@@ -3,7 +3,7 @@
     <div class="content">
         <div class="row">
             <div class="col-sm-7 col-6">
-                <h4 class="page-title">My Profile</h4>
+                <h4 class="page-title">Users details</h4>
             </div>
 
             <div class="col-sm-5 col-6 text-right m-b-30">
@@ -16,41 +16,40 @@
                     <div class="profile-view">
                         <div class="profile-img-wrap">
                             <div class="profile-img">
-                                <a href="#"><img class="avatar" src="assets/img/doctor-03.jpg" alt=""></a>
+                                <a href="#"><img class="inline-block"
+                                    src="assets/uploads/{{user.picture}}"></a>
                             </div>
                         </div>
                         <div class="profile-basic">
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="profile-info-left">
-                                        <h3 class="user-name m-t-0 mb-0">Cristina Groves</h3>
-                                        <small class="text-muted">Gynecologist</small>
-                                        <div class="staff-id">Employee ID : DR-0001</div>
-                                        <div class="staff-msg"><a href="chat.html" class="btn btn-primary">Send Message</a></div>
+                                        <h6 class="user-name m-t-0 mb-0">{{user.firstName}} {{user.lastName}}</h6>
+                                        <small class="text-muted">{{user.role}}</small>
+                                     
+                                        <div class="staff-msg"><a href="chat.html" 
+                                            class="btn btn-primary">Send Message</a></div>
                                     </div>
                                 </div>
                                 <div class="col-md-7">
                                     <ul class="personal-info">
                                         <li>
                                             <span class="title">Phone:</span>
-                                            <span class="text"><a href="#">770-889-6484</a></span>
+                                            <span class="text"><a href="#">{{user.phoneNumber}}</a></span>
                                         </li>
                                         <li>
                                             <span class="title">Email:</span>
-                                            <span class="text"><a href="#">cristinagroves@example.com</a></span>
+                                            <span class="text"><a href="#">{{user.email}}</a></span>
                                         </li>
                                         <li>
                                             <span class="title">Birthday:</span>
-                                            <span class="text">3rd March</span>
+                                            <span class="text">{{user.dateNaissance}}</span>
                                         </li>
                                         <li>
                                             <span class="title">Address:</span>
-                                            <span class="text">714 Burwell Heights Road, Bridge City, TX, 77611</span>
+                                            <span class="text">{{user.lieu}}</span>
                                         </li>
-                                        <li>
-                                            <span class="title">Gender:</span>
-                                            <span class="text">Female</span>
-                                        </li>
+                                    
                                     </ul>
                                 </div>
                             </div>
@@ -59,15 +58,7 @@
                 </div>
             </div>
         </div>
-        <div class="profile-tabs">
-            <ul class="nav nav-tabs nav-tabs-bottom">
-                <li class="nav-item"><a class="nav-link active" href="#about-cont" data-toggle="tab">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#bottom-tab2" data-toggle="tab">Profile</a></li>
-                <li class="nav-item"><a class="nav-link" href="#bottom-tab3" data-toggle="tab">Messages</a></li>
-            </ul>
-
-  
-        </div>
+     
     </div>
  
 </div>

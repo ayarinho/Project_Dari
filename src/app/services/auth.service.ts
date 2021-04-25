@@ -13,8 +13,8 @@ export class AuthService {
    user:Observable<any>
    
 
-   url= "http://localhost:8084/authentification/";
-   url1="http://localhost:8084/debloquer-Compte/"
+   url= "http://localhost:8086/authentification/";
+   url1="http://localhost:8086/debloquer-Compte/"
 
 
    
@@ -69,7 +69,7 @@ export class AuthService {
 
   AddUser(user:any,password:any){
 
-    return this.http.post<any>("http://localhost:8084/add-user/"+password,user)
+    return this.http.post<any>("http://localhost:8086/add-user/"+password,user)
     
   }
 
@@ -77,7 +77,7 @@ export class AuthService {
   pushFileToStorage(file: File): Observable<HttpEvent<{}>> {
     let formdata: FormData = new FormData();
     formdata.append('file', file);
-    const req = new HttpRequest('POST', 'http://localhost:8084/upload', formdata, {
+    const req = new HttpRequest('POST', 'http://localhost:8086/upload', formdata, {
       reportProgress: true,
       responseType: 'text'
     });
@@ -86,14 +86,14 @@ export class AuthService {
 
   setPhotoByClient(idUser:any,photo:any){
 
-    return this.http.post("http://localhost:8084/setPhoto/"+idUser+"/"+photo ,{responseType:'text' as 'json'}
+    return this.http.post("http://localhost:8086/setPhoto/"+idUser+"/"+photo ,{responseType:'text' as 'json'}
   );
   }
 
 
   ForgetPassword(email:any){
 
-    return this.http.post("http://localhost:8084/forget-Password/"+email,{email},{responseType:'text' as 'json'})
+    return this.http.post("http://localhost:8086/forget-Password/"+email,{email},{responseType:'text' as 'json'})
 
 
   }
@@ -101,14 +101,14 @@ export class AuthService {
   
   getUserByUsername(username:any){
 
-    return this.http.get("http://localhost:8084/getUser/"+username)
+    return this.http.get("http://localhost:8086/getUser/"+username)
 
 
   }
 
   changerPassword(username:any,oldPassword:any,password:any,newPassword:any){
 
-      return this.http.post<any>("http://localhost:8084/changer-Password/"+username+"/"
+      return this.http.post<any>("http://localhost:8086/changer-Password/"+username+"/"
       +oldPassword+"/"+password +"/"+newPassword,
       {username,oldPassword,password,newPassword},{responseType:'text' as 'json'}) 
       // ken jeni erreur parse wala failure raw lezem nhot kima haka 
@@ -117,7 +117,7 @@ export class AuthService {
 
     getLongAndLat(city:any){
 
-      return  this.http.post("http://localhost:8084/GeoIPTest/"+city ,city);
+      return  this.http.post("http://localhost:8086/GeoIPTest/"+city ,city);
 
     }
 

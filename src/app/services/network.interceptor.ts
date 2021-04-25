@@ -24,7 +24,7 @@ export class NetworkInterceptor implements HttpInterceptor {
         
         setTimeout(()=>{
           this.loader.hide();
-        },3000);
+        },1000);
        
       })
     );

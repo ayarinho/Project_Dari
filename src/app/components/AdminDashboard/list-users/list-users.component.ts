@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import{Location} from '@angular/common'
 
 import { AdminDashboardService } from 'src/app/services/admin-dashboard.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-list-users',
@@ -14,14 +15,27 @@ export class ListUsersComponent implements OnInit {
   listNewUsers:Array<any>=[];
   listNewUsersFilter:Array<any>=[];
   idUser:number=0;
+   userName:any;
+   p:number=1;
 
-  constructor(private adminService:AdminDashboardService,private router:Router,private location:Location) { }
+  constructor(private adminService:AdminDashboardService,
+    private router:Router,private location:Location) { }
 
-  getIdUser(i:number){
+  getIdUser(i:any){
 
     console.log("iddddd "+i)
     this.idUser=i;
       
+    ///bech nekhedh l'id naamel getuserbyid wensetiiih fi data mawjoud f service/////
+    
+    this.adminService.getUserById(i).subscribe(data=>{
+
+      console.log(data)
+
+      this.adminService.setdata(data);
+    })
+
+     
   }
 
   refresh(){
@@ -43,18 +57,32 @@ export class ListUsersComponent implements OnInit {
 
   ngOnInit(): void {
 
+    /*this.adminService.getUserById(this.idUser).subscribe(data=>{
+
+      console.log(data)
+    })*/
+
     this.adminService.getAllUsers().subscribe((data:any)=>{
 
       this.listNewUsers=data;
   
+      console.log(this.listNewUsers)
     })
 
-  /*this.adminService.getAllUsers().subscribe((data:any)=>{
+}
 
-      this.listNewUsers=data;
-      
-  })*/
-  
+search(){
+
+  if(this.userName == ''){
+
+    this.ngOnInit();
+  }else{
+
+    this.listNewUsers=this.listNewUsers.filter(res=>{
+
+      return res.userName.toLocaleLowerCase().match(this.userName.toLocaleLowerCase());
+    })
+  }
 }
   
 }

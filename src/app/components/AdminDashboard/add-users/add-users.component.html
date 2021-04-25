@@ -116,15 +116,21 @@
                     </div>
                     <div class="form-group">
                         <label class="display-block">Status</label>
+
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="status" id="employee_active" value="option1" checked>
-                            <label class="form-check-label" for="employee_active">
+                            <input class="form-check-input" type="radio"
+                            formControlName="isBlock" name="isBlock" 
+                            id="active" value="active" checked 
+                           >
+                            <label class="form-check-label" for="active">
                             Active
                             </label>
                         </div>
+
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="status" id="employee_inactive" value="option2">
-                            <label class="form-check-label" for="employee_inactive">
+                            <input class="form-check-input" type="radio" name="isBlock" id="inactive"
+                             value="inactive"  formControlName="isBlock">
+                            <label class="form-check-label" for="inactive">
                             Inactive
                             </label>
                         </div>

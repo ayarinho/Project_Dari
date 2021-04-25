@@ -9,7 +9,7 @@
 </head>
 <body>
 
-
+  
 
   <div class="cont animated fadeInLeftBig"  >
 
@@ -34,7 +34,9 @@
         </div>
       </label>
 
-      <button class="submit"  id="open-popup" (click)="login()" type="button">Sign In</button>
+      <button class="submit" data-toggle="modal" 
+
+      data-target="#delete_employee"  id="open-popup" (click)="login()" type="button">Sign In</button>
       
   
    <div *ngIf="show==true" class="recaptcha animated  fadeInRightBig "  >
@@ -45,7 +47,6 @@
     </div>
 
 
-  
 
     <div class="link">
       <p class="forgot-pass" routerLink="/login/forgetPassword" >Forgot Password ?</p> &nbsp;&nbsp;&nbsp;
@@ -60,10 +61,13 @@
         </ul>
       </div> <br>
 
+      
+
       <p class="text-success " id="messageDebloqueUser">{{messageDebloqueUser}}</p>
 
     </div>
     </form>
+  
 
     <div class="sub-cont">
       <div class="img">
@@ -170,10 +174,12 @@
   </div>
 
 
+
       
 
 </body>
 </html>
+
 
 <div class="center"  >
 </div>
@@ -199,3 +205,7 @@
   </div>
 
 
+ 
+
+
+   

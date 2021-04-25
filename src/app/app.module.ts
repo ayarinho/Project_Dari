@@ -17,7 +17,7 @@ import{TokenInterceptorService} from './services/token-interceptor.service';
 import { ForgetPasswordComponent } from './components/Login/forget-password/forget-password.component';
 import { ChangerPasswordComponent } from './components/Login/changer-password/changer-password.component';
 import{LoginModule}  from '../app/components/Login/login.module';
-import { DashbordComponent } from './components/dashbord/dashbord.component';
+//import { DashbordComponent } from './components/dashbord/dashbord.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { NetworkInterceptor } from './services/network.interceptor';
 import { SideBarComponent } from './components/AdminDashboard/side-bar/side-bar.component';
@@ -37,6 +37,11 @@ import { EditNotificationsComponent } from './components/AdminDashboard/edit-not
 import { ChatComponent } from './components/AdminDashboard/chat/chat.component';
 import { MailComponent } from './components/AdminDashboard/mail/mail.component';
 import { EditAppointementComponent } from './components/AdminDashboard/edit-appointement/edit-appointement.component'
+import {Ng2OrderModule} from 'ng2-order-pipe'
+import {Ng2SearchPipeModule} from 'ng2-search-filter'
+import {NgxPaginationModule} from 'ngx-pagination';
+import { GeolocalisationComponent } from './components/AdminDashboard/geolocalisation/geolocalisation.component';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +50,6 @@ import { EditAppointementComponent } from './components/AdminDashboard/edit-appo
     LoginComponent,
     ForgetPasswordComponent,
     ChangerPasswordComponent,
-    DashbordComponent,
     LoaderComponent,
     SideBarComponent,
     NavBarComponent,
@@ -63,12 +67,17 @@ import { EditAppointementComponent } from './components/AdminDashboard/edit-appo
     ChatComponent,
     MailComponent,
     EditAppointementComponent,
+    GeolocalisationComponent,
+    
+    
     
 
   ],
 
   imports: [
-  
+    NgxPaginationModule,
+    Ng2SearchPipeModule,
+    Ng2OrderModule,
     ReactiveFormsModule,
     AngularFirestoreModule,
     BrowserModule,

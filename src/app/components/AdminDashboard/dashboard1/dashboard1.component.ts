@@ -1,21 +1,47 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import * as Chart from 'chart.js';
 import { AdminDashboardService } from 'src/app/services/admin-dashboard.service';
-
+import jwtDecode  from 'jwt-decode';
 @Component({
   selector: 'app-dashboard1',
   templateUrl: './dashboard1.component.html',
   styleUrls: ['./dashboard1.component.css']
 })
-export class Dashboard1Component implements OnInit {
+export class Dashboard1Component implements OnInit ,DoCheck {
+
+  tokenObj:any=JSON.parse(localStorage.getItem('token')!); // pour deconnecter automatique if token expirer
 
    listNewUsers:Array<any>=[];
    listNewUsersFilter:Array<any>=[];
+   statusUser:any;
+   verifeyStatusUser:boolean=false;
 
-  constructor(private adminService:AdminDashboardService) { }
+  constructor(private adminService:AdminDashboardService,private router:Router) { }
 
 
-  
+  ngDoCheck(){
+
+
+   this.statusUser=localStorage.getItem("status user"); //user connected offline ou online
+
+   /*console.log(this.tokenObj.token);
+   const decode:any=jwtDecode(this.tokenObj.token);  
+   console.log(decode)
+  const date= new Date(0);
+  const tokenexp=date.setUTCSeconds(decode.exp)
+  if(tokenexp.valueOf()<new Date().valueOf()){  // si date token inferieur a la date actuelle token yetfasakh
+    console.log("Le Token est Totalement expirer!!!");
+
+   localStorage.removeItem('token');
+
+    this.router.navigate(['/login']);
+
+}
+console.log("Date exp token  :" + tokenexp.valueOf());
+console.log("Date actuelle  :" +  new Date().valueOf());*/
+    
+  }
 
   ngOnInit(): void {
 

@@ -10,6 +10,7 @@ import { EditAppointementComponent } from './edit-appointement/edit-appointement
 import { EditNotificationsComponent } from './edit-notifications/edit-notifications.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { EditUsersComponent } from './edit-users/edit-users.component';
+import { GeolocalisationComponent } from './geolocalisation/geolocalisation.component';
 import { ListUsersComponent } from './list-users/list-users.component';
 import { MailComponent } from './mail/mail.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -38,6 +39,8 @@ export const routes: Routes = [
   {path:"chat", component:ChatComponent},
   {path:"mail", component:MailComponent},
   {path:"edit-appointement", component:EditAppointementComponent},
+  {path:"geolocation", component:GeolocalisationComponent}
+ 
 
  
 ];

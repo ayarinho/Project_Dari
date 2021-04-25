@@ -1,0 +1,19 @@
+.items{
+
+    display: flex;
+    justify-content: space-around;
+}
+
+.text-right{
+
+    display: flex;
+    justify-content: center;
+}
+img {
+    width: 50px;
+    border-radius: 50%;
+    background-color: azure;
+
+}
+
+   

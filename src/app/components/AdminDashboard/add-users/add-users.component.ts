@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators ,AbstractControl} from '@angular/forms';
+import { AdminDashboardService } from 'src/app/services/admin-dashboard.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 export function passValidator(control: AbstractControl) {
@@ -28,9 +29,11 @@ export class AddUsersComponent implements OnInit {
   messageRegisterSuccess:any;
   messageRegisterFailed:any;
   verifey:boolean=false;
+  active:boolean=false;
 
 
-  constructor(private formBuilder: FormBuilder ,private auth:AuthService) { }
+  constructor(private formBuilder: FormBuilder ,private auth:AuthService,
+    private adminService:AdminDashboardService) { }
 
   get f() { return this.registerForm.controls; }
 
@@ -46,15 +49,19 @@ export class AddUsersComponent implements OnInit {
       dateNaissance:['', [Validators.required]],
       phoneNumber:['', [Validators.required]],
       lieu:['', [Validators.required]],
+      isBlock:['', [Validators.required]],
+
     
     });
       }
 
       addUser(){
+
         this.Change=true;
 
 
           this.auth.AddUser(this.registerForm.value,this.f.password.value).subscribe(data=>{
+
       
             console.log(data)
           Object.keys(data).map((Obj:any)=>{ // map nekhedh key
@@ -64,6 +71,24 @@ export class AddUsersComponent implements OnInit {
               Obj != "Username exits deja dans la base de donner" &&
               Obj != "Email exits deja dans la base de donner" ){
          
+
+                Object.values(data).map((Obj:any)=>{
+                
+            if(this.registerForm.value.isBlock =="active"){
+
+              this.active=true
+
+              alert("ayriiiiiiiiiiiiiiiiiiiinho" + Obj.id)
+         
+               this.adminService.blockUser(Obj.id).subscribe(); 
+      
+            }else{
+      
+              this.adminService.deblockUser(Obj.id).subscribe();
+            }
+           
+          });
+
                 this.verifey=true;
                  this.messageRegisterSuccess=Obj;
            
@@ -84,6 +109,7 @@ export class AddUsersComponent implements OnInit {
 
         this.messageRegisterFailed=null;
         this.messageRegisterSuccess=null;
+        this.registerForm.reset();
       }
 
   }

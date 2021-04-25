@@ -23,8 +23,6 @@ const routes: Routes = [
 }]},
 
 
-
-
 {path: 'card' , component:CartComponent},
 
 {path: '**'  ,component:LoginComponent}

@@ -4,8 +4,7 @@ import firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
-import { LoadingService } from 'src/app/services/loading.service';
-import { HttpClient } from '@angular/common/http';
+import { AdminDashboardService } from 'src/app/services/admin-dashboard.service';
 
 export function passValidator(control: AbstractControl) {
   if (control && (control.value !== null || control.value !== undefined)) {
@@ -50,12 +49,17 @@ export class LoginComponent implements OnInit {
   messageRegisterSuccess:any;
   messageDebloqueUser:any;
   retrieveForgetPassword:boolean=false;
-  //loading$ = this.loader.loading$;
-
+  showLoadingIndicator:boolean=false;
+  statusUser:string="";
 
   constructor(private renderer: Renderer2,   private formBuilder: FormBuilder,
-    public auth: AngularFireAuth ,private os :AuthService,private route:Router,
-    public loader: LoadingService ) { }
+    public auth: AngularFireAuth ,private os :AuthService,private route:Router
+    ,private adminService:AdminDashboardService
+) {
+
+  
+
+     }
 
   get f() { return this.registerForm.controls; }
   get M() { return this.LoginForm.controls; }
@@ -179,11 +183,11 @@ onSubmit(){
     this.progress.percentage = 0;
     this.currentFileUpload = this.selectedFiles.item(0)
     console.log(this.currentFileUpload.name)
-    this.os.pushFileToStorage(this.currentFileUpload).subscribe(event => {
+    /*this.os.pushFileToStorage(this.currentFileUpload).subscribe(event => {
         console.log(event)
         console.log(event.type)
       
-    })
+    })*/
     
     this.selectedFiles = undefined;
   
@@ -203,8 +207,9 @@ onSubmit(){
         console.log("tokeeeeen ", token);
 
         localStorage.setItem('token', JSON.stringify({ token: token }));
+      
 
-
+ 
        this.route.navigate(['/card']);
       })
       .catch(error=>{
@@ -268,7 +273,7 @@ onSubmit(){
   }
   
   
-  upload() {
+  /*upload() {
          
     this.progress.percentage = 0;
     this.currentFileUpload = this.selectedFiles.item(0)
@@ -281,7 +286,7 @@ onSubmit(){
     
     this.selectedFiles = undefined;
   
-  }
+  }*/
 
   login() {
     
@@ -304,8 +309,10 @@ onSubmit(){
 
       localStorage.setItem('token', JSON.stringify({ token: data }));
 
-  
- 
+       this.statusUser=this.M.email.value; // verifier est ce ue utilisateur online ou offline email id unique or user
+       
+       localStorage.setItem('status user', this.statusUser);
+
       this.route.navigate(['/card']);
  
 
