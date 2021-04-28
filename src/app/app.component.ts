@@ -13,31 +13,6 @@ import { Router,NavigationStart,Event,NavigationEnd, RouterEvent } from '@angula
 })
 
 export class AppComponent {
-  loading$ = this.loader.loading$;
-  showLoadingIndicator:boolean=false;
-  constructor(public loader: LoadingService, private http: HttpClient,private router:Router) {
-
-    
-    this.router.events.subscribe((routerEvent:Event)=>{
-
-      if(routerEvent instanceof NavigationStart){
-
-        this.showLoadingIndicator=true;
-      }
-
-      if(routerEvent instanceof NavigationEnd){
-
-        this.showLoadingIndicator=false;
-      }
-    })
-  }
-
-  fetchData() {
-    this.http
-      .get('https://api.github.com/users/thisiszoaib')
-      .subscribe((res) => {
-        console.log(res);
-      });
-  }
+ 
   
 }

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { Dashboard1Component } from '../AdminDashboard/dashboard1/dashboard1.component';
-import { AddAppointementComponent } from './add-appointement/add-appointement.component';
 import { AddUsersComponent } from './add-users/add-users.component';
 import { AppointementComponent } from './appointement/appointement.component';
 import { ChatComponent } from './chat/chat.component';
@@ -35,7 +34,6 @@ export const routes: Routes = [
   {path:"profile", component:ProfileComponent},
   {path:"edit-profile", component:EditProfileComponent},
   {path:"edit-notification", component:EditNotificationsComponent},
-  {path:"add-appointement", component:AddAppointementComponent},
   {path:"chat", component:ChatComponent},
   {path:"mail", component:MailComponent},
   {path:"edit-appointement", component:EditAppointementComponent},

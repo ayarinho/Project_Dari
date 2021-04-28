@@ -41,11 +41,11 @@
                     <table class="table table-striped custom-table" >
                         <thead >
                             <tr >
-                                <th style="min-width:100px;">Photo</th>
+                                <th>Picture</th>
                                 <th style="min-width:100px;">Username</th>
                                 <th>FirstName</th>
                                 <th>LastName</th>
-                                <th>Email</th>
+                                <th class="email">Email</th>
                                 <th>Mobile</th>
                                 <th style="min-width: 110px;">Birth Date</th>
                                 <th>Role</th>
@@ -58,16 +58,9 @@
                         <tbody *ngFor="let user of listNewUsers | paginate: {itemsPerPage:3,currentPage:p}">
                             <tr class="animated fadeInDown" >
 
-                                <td >
-                                   <img src="assets/uploads/{{user.picture}}" 
-                                    class="rounded-circle" alt="">
-                                </td>
-                                
-                                
-                                <td>
-                                    <h2>{{user.userName}}</h2>
-                                </td>
-
+                                <td><img width="37" height="34" src="assets/uploads/{{user.picture}}" 
+                                    class="rounded-circle m-r-8" alt=""> </td>
+                                 <td>{{user.userName}}</td>
                                 <td>{{user.firstName}}</td>
                                 <td>{{user.lastName}}</td>
                                 <td>{{user.email}}</td>
@@ -114,7 +107,7 @@
                 <h3>Are you sure want to delete this Employee?</h3>
                 <div class="m-t-20"> <!--<a class="btn btn-white" data-dismiss="modal">Close</a>-->
                     <button type="submit" class="btn btn-danger" data-dismiss="modal" 
-                    (click)="deleteUserById(idUser)">Delete</button>
+                    (click)="deleteUserById()">Delete</button>
                 </div>
             </div>
         </div>

@@ -9,11 +9,18 @@
     display: flex;
     justify-content: center;
 }
-img {
-    width: 50px;
-    border-radius: 50%;
-    background-color: azure;
 
-}
 
    
+td{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  
+    font-weight: 500;
+  }
+
+.email{
+
+ display: flex;
+    justify-content: center;
+
+}

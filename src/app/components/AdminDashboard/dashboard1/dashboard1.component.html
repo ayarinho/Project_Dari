@@ -7,7 +7,7 @@
                         <span class="dash-widget-bg1"><i class="fa fa-home" aria-hidden="true"></i></span>
                         <div class="dash-widget-info text-right">
                             <h3>98</h3>
-                            <span class="widget-title1">Home <i class="fa fa-check" aria-hidden="true"></i></span>
+                            <span class="widget-title1" >Home <i class="fa fa-check" aria-hidden="true"></i></span>
                         </div>
                     </div>
                 </div>
@@ -121,31 +121,39 @@
                         </div>
                     </div>
                 </div>
-
+  
                 <div class="col-12 col-md-6 col-lg-4 col-xl-4" id="scroll">
                     <div class="card member-panel">
                         <div class="card-header bg-white">
-                            <h4 class="card-title mb-0">Users status</h4> <!--connecter ou non-->
+                <i class="fa fa-user-o" aria-hidden="true">Users status</i> 
+              
+                            <div class="col-sm-6 col-md-10">
+               
+                             
+                                <input type="text" class="form-control" placeholder="Username" name="userName" 
+                                [(ngModel)]="userName" (ngModelChange)='search()'>
+                      
+                        </div>  
                         </div>
                         <div class="card-body">
-                            <ul class="contact-list" *ngFor="let user of listNewUsersFilter">
+                            <ul class="contact-list" data-spy="scroll" *ngFor="let us of listStatusUser">
                                 <li>
                                     <div class="contact-cont">
                                         <div class="float-left user-img m-r-10">
                                             <a routerLink="/users" title="">
-                                                <img src="assets/uploads/{{user.picture}}" alt=""
-                                                 class="w-40 rounded-circle">
-                                                 <span *ngIf='user.email == statusUser' class="status online">
+                                                <img width="39" height="36" src="assets/uploads/{{us.picture}}" 
+                                                class="rounded-circle m-r-8" alt=""> 
+                                                 <span *ngIf='us.isConnected' class="status online">
                                                  </span>
-                                                 <span *ngIf='user.email != statusUser' class="status offline">
+                                                 <span *ngIf='!us.isConnected' class="status offline">
                                                  </span>
                                                 </a>
 
                                         </div>
 
                                         <div class="contact-info">
-                                            <span class="contact-name text-ellipsis">{{user.lastName}} {{user.firstName}}</span>
-                                            <span class="contact-date">{{user.lieu}}</span>
+                                            <span class="contact-name text-ellipsis">{{us.lastName}} {{us.firstName}}</span>
+                                            <span class="contact-date">{{us.lieu}}</span>
                                         </div>
                                     </div>
                                 </li>
@@ -156,6 +164,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
 
 
@@ -169,22 +178,36 @@
                         </div>
                         <div class="card-block">
 
-                            <div class="table-responsive" *ngFor="let user of listNewUsersFilter ; let i = index">
-                                <table class="table mb-0 new-patient-table">
-                                    <tbody>
+                            <div class="table-responsive" >
+                                <table class="table mb-0 new-patient-table" >
+                                    <tbody *ngFor="let user of listNewUsersFilter ; let i = index">
                                    
                                         <tr>
                                             <td>
-                                                <img width="40" height="28" class="rounded-circle" 
-                                                src="assets/uploads/{{user.picture}}" alt=""> 
+                                                <img width="39" height="36" 
+                                                src="assets/uploads/{{user.picture}}" 
+                                                class="rounded-circle m-r-8" alt=""> 
                                             </td>
                                             <td>
-                                               
-                                                <h2>{{user.userName}}</h2>
+                                                <h5 class="time-title p-0">{{user.userName}}</h5>
+                                                <p>Client</p>
                                             </td>
-                                            <td>{{user.email}}</td>
-                                            <td>{{user.phoneNumber}}</td>
-                                            <td>{{user.lieu}}</td>
+                                            <td>
+                                                <h5 class="time-title p-0">{{user.email}}</h5>
+
+                                                <p>address email</p>
+                                            </td>
+                                            <td>
+                                                <h5 class="time-title p-0">{{user.phoneNumber}}</h5>
+                                                <p>PhoneNumber</p>
+
+                                            </td>
+                                            <td>
+                                                <h5 class="time-title p-0">{{user.lieu}}</h5>
+                                                <p>Location</p>
+
+
+                                            </td>
                                             
                                        
                                         </tr>

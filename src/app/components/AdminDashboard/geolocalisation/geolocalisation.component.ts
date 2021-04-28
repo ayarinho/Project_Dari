@@ -2,7 +2,7 @@ import { Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminDashboardService } from 'src/app/services/admin-dashboard.service';
 import { AuthService } from 'src/app/services/auth.service';
-
+import{cleanString}  from '../profile/profile.component'
 
 declare const L: any;
 @Component({
@@ -26,19 +26,13 @@ export class GeolocalisationComponent implements OnInit ,OnDestroy,DoCheck{
 
 
     let k= JSON.stringify(this.adminService.geo);
-  
     let json= cleanString(k)
     this.geo=JSON.parse(json)
-    console.log(this.geo);
+    //console.log(this.geo);
     
-    function cleanString(str:any) {
-      str = str.replace('"[', '[');
-      str = str.replace(']"', ']');
-      return str;
-    }
-
+  
     if (!navigator.geolocation) {
-      console.log('location is not supported');
+     // console.log('location is not supported');
     }
     navigator.geolocation.getCurrentPosition((position) => {
       const coords = position.coords;

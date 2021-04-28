@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import{Location} from '@angular/common'
 
 import { AdminDashboardService } from 'src/app/services/admin-dashboard.service';
-import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-list-users',
@@ -23,10 +22,10 @@ export class ListUsersComponent implements OnInit {
 
   getIdUser(i:any){
 
-    console.log("iddddd "+i)
+   // console.log("iddddd "+i)
     this.idUser=i;
       
-    ///bech nekhedh l'id naamel getuserbyid wensetiiih fi data mawjoud f service/////
+    ///bech nekhedh l'id naamel getuserbyid wensetiiih fi data mawjoud f service/////pour edit
     
     this.adminService.getUserById(i).subscribe(data=>{
 
@@ -43,10 +42,11 @@ export class ListUsersComponent implements OnInit {
     this.router.navigateByUrl("/list_users",{skipLocationChange:true}).then(()=>{
 
       this.router.navigate([decodeURI(this.location.path())]);
-    })
+    });
   }
 
-  deleteUserById(id:number){
+ 
+ deleteUserById(){
    
  this.adminService.deleteUserById(this.idUser).subscribe();
  this.refresh();
@@ -57,16 +57,11 @@ export class ListUsersComponent implements OnInit {
 
   ngOnInit(): void {
 
-    /*this.adminService.getUserById(this.idUser).subscribe(data=>{
-
-      console.log(data)
-    })*/
-
     this.adminService.getAllUsers().subscribe((data:any)=>{
 
       this.listNewUsers=data;
   
-      console.log(this.listNewUsers)
+      //console.log(this.listNewUsers)
     })
 
 }

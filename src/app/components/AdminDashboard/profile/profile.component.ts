@@ -1,6 +1,14 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { AdminDashboardService } from 'src/app/services/admin-dashboard.service';
 
+ 
+export function cleanString(str:any) {
+  str = str.replace('"[', '[');
+  str = str.replace(']"', ']');
+  return str;
+}
+
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -21,14 +29,8 @@ export class ProfileComponent implements OnInit,DoCheck {
   
     let json= cleanString(k)
     this.user=JSON.parse(json)
-    console.log(this.user);
-    
-    function cleanString(str:any) {
-      str = str.replace('"[', '[');
-      str = str.replace(']"', ']');
-      return str;
-    }
-    
+    //console.log(this.user);
+   
    
    }
 }

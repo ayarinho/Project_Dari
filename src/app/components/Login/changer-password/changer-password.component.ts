@@ -38,7 +38,7 @@ export class ChangerPasswordComponent implements OnInit {
   this.auth.changerPassword(user.userName,this.f.oldPassword.value,this.f.password.value,this.f.newPassword.value)
   .subscribe(data1=>{
 
-            console.log("Message retourner :  ",data1);
+            //console.log("Message retourner :  ",data1);
           })
             
     })

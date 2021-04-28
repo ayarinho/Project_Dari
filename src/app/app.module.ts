@@ -32,7 +32,6 @@ import { AppointementComponent } from './components/AdminDashboard/appointement/
 import { ListUsersComponent } from './components/AdminDashboard/list-users/list-users.component';
 import { EditUsersComponent } from './components/AdminDashboard/edit-users/edit-users.component';
 import { AddUsersComponent } from './components/AdminDashboard/add-users/add-users.component';
-import { AddAppointementComponent } from './components/AdminDashboard/add-appointement/add-appointement.component';
 import { EditNotificationsComponent } from './components/AdminDashboard/edit-notifications/edit-notifications.component';
 import { ChatComponent } from './components/AdminDashboard/chat/chat.component';
 import { MailComponent } from './components/AdminDashboard/mail/mail.component';
@@ -41,6 +40,7 @@ import {Ng2OrderModule} from 'ng2-order-pipe'
 import {Ng2SearchPipeModule} from 'ng2-search-filter'
 import {NgxPaginationModule} from 'ngx-pagination';
 import { GeolocalisationComponent } from './components/AdminDashboard/geolocalisation/geolocalisation.component';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -62,7 +62,6 @@ import { GeolocalisationComponent } from './components/AdminDashboard/geolocalis
     ListUsersComponent,
     EditUsersComponent,
     AddUsersComponent,
-    AddAppointementComponent,
     EditNotificationsComponent,
     ChatComponent,
     MailComponent,
@@ -101,7 +100,10 @@ import { GeolocalisationComponent } from './components/AdminDashboard/geolocalis
     AdminModule
     
   ],
-  providers:[  {
+  providers:[  
+    DatePipe,
+
+    {
     provide:HTTP_INTERCEPTORS,
     useClass:TokenInterceptorService,
     multi:true

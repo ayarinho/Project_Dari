@@ -9,7 +9,10 @@ import { User } from '../Model/User';
 export class AdminDashboardService {
 
     user:any;
-   geo:any;
+    geo:any;
+    appointement:any;
+    userApp:any;
+
   constructor(private http:HttpClient) { }
 
   url= "http://localhost:8086/";
@@ -61,4 +64,100 @@ export class AdminDashboardService {
 
     return this.http.get(this.url+"deblockedUser/"+id);
   }
+
+    
+   getAllAds(){
+
+    return this.http.get(this.url+"getAllAds")
+   }
+
+
+   addAppointement(appointement:any,id:number){
+
+
+    return this.http.post(this.url+"add-Appointment"+"/"+id,appointement,{responseType:'text' as 'json'});
+    
+   }
+   
+
+   getAppointement(idApp:number){
+
+    return this.http.get(this.url+"getAppointement"+"/"+idApp);
+   }
+
+   setAppointement(data:any,data1:any){
+
+    this.userApp=data;
+    this.appointement=data1
+   }
+
+
+
+   
+  updateAppointement(appointement:any,idApp:number){
+
+    let url="http://localhost:8086/updateAppointment/"+ idApp;
+    return this.http.put(url, appointement,{responseType:'text' as 'json'});
+  }
+
+  updateProfileUser(user:any,idUser:number){
+
+    let url="http://localhost:8086/updateProfileUser/"+ idUser;
+    return this.http.put(url, user,{responseType:'text' as 'json'});
+  }
+
+
+   isVisibility(id:any){
+
+    return this.http.get(this.url+"isVisibility/"+id);
+
+   }
+  
+   isNotVisibility(id:any){
+
+    return this.http.get(this.url+"isNotVisibility/"+id);
+
+   }
+
+   
+   isPurchased(id:any){
+
+    return this.http.get(this.url+"isPurchased/"+id);
+
+   }
+  
+   isNotPurchased(id:any){
+
+    return this.http.get(this.url+"isNotPirchased/"+id);
+
+   }
+
+   getUserByEmail(email:string){
+
+    return this.http.get(this.url+"getUsersByEmail/"+email);
+
+   }
+
+   
+   isConnected(id:number){
+
+    return this.http.get(this.url+"isConnected/"+id);
+    
+   }
+
+   isDeconnected(id:number){
+    return this.http.get(this.url+"isDonnected/"+id);
+
+   }
+ 
+   findIdByUserName(username:string){
+
+    return this.http.get(this.url+"findIdByUserName/"+username);
+
+   }
+    
+   deleteAppointementById(idapp:number){
+
+    return this.http.delete(this.url+"deleteAppById/"+idapp);
+   }
 }

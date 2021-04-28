@@ -1,0 +1,10 @@
+input ,textarea,select{
+
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: blue;
+    font-weight: 600;
+}
+
+select{
+    width: 150px;
+}

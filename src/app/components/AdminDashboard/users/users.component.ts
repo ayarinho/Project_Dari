@@ -37,18 +37,13 @@ export class UsersComponent implements OnInit {
 
   getLocationProp(lieu:string){
 
-//console.log('lieeeeeeeeeeu abs a' + lieu)
-       
-
       this.auth.getLongAndLat(lieu).subscribe(data=>{
 
-     
-      //  console.log("dataaaaaaaaaaaaaaaaaaaaaaaa "+data)
   
         this.stringJson = JSON.stringify(data);
         this.stringObject=JSON.parse(this.stringJson);
-        console.log(this.stringObject.longitude);
-        console.log(this.stringObject.latitude);
+        //console.log(this.stringObject.longitude);
+        //console.log(this.stringObject.latitude);
   
        this.adminService.setdataGeo(this.stringObject)
     
@@ -68,6 +63,13 @@ export class UsersComponent implements OnInit {
     })
   }
 
+
+  getIdUserBeforeDelete(id:number){
+      
+    this.idUser=id;
+
+  }
+
   deleteUserById(){
    
     this.adminService.deleteUserById(this.idUser).subscribe();
@@ -80,9 +82,9 @@ export class UsersComponent implements OnInit {
 
       console.log(id)
 
-      this.adminService.getUserById(id).subscribe(data=>{
+      this.adminService.getUserById(id).subscribe((data:any)=>{
 
-      console.log("hethaaa eli bech yethat profileeee  " +data)
+      //console.log("hethaaa eli bech yethat profileeee  " +data)
 
       this.adminService.setdata(data);
     })

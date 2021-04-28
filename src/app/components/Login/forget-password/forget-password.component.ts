@@ -148,7 +148,7 @@ changePassword(){
 
   this.auth.getUserByUsername(this.f.userName.value).subscribe((user:any)=>{
 
-    console.log(user)
+    //console.log(user)
 
    this.auth.changerPassword(user.userName,this.f.Oldpassword.value,
     this.f.password.value,this.f.newPassword.value).subscribe(data=>{

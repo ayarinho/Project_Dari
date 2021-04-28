@@ -5,6 +5,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { AdminDashboardService } from 'src/app/services/admin-dashboard.service';
+import{cleanString}  from '../../AdminDashboard/profile/profile.component'
 
 export function passValidator(control: AbstractControl) {
   if (control && (control.value !== null || control.value !== undefined)) {
@@ -51,6 +52,7 @@ export class LoginComponent implements OnInit {
   retrieveForgetPassword:boolean=false;
   showLoadingIndicator:boolean=false;
   statusUser:string="";
+  userConnected:string="";
 
   constructor(private renderer: Renderer2,   private formBuilder: FormBuilder,
     public auth: AngularFireAuth ,private os :AuthService,private route:Router
@@ -147,7 +149,8 @@ onSubmit(){
      
         if(Obj != "Password have 8 caracter upper lower and number" &&
         Obj != "Username exits deja dans la base de donner" &&
-        Obj != "Email exits deja dans la base de donner" ){
+        Obj != "Email exits deja dans la base de donner" &&
+        Obj != "Invalid email"){
    
           this.verifey=true;
            this.messageRegisterSuccess=Obj;
@@ -176,20 +179,14 @@ onSubmit(){
   }else{
 
     return ;
-     //this.route.navigate(['/'])
   }
 
+  this.progress.percentage = 0;
+  this.currentFileUpload = this.selectedFiles.item(0)
+  this.os.pushFileToStorage(this.currentFileUpload).subscribe();
+  
+  this.selectedFiles = undefined;
 
-    this.progress.percentage = 0;
-    this.currentFileUpload = this.selectedFiles.item(0)
-    console.log(this.currentFileUpload.name)
-    /*this.os.pushFileToStorage(this.currentFileUpload).subscribe(event => {
-        console.log(event)
-        console.log(event.type)
-      
-    })*/
-    
-    this.selectedFiles = undefined;
   
   
   }
@@ -208,8 +205,6 @@ onSubmit(){
 
         localStorage.setItem('token', JSON.stringify({ token: token }));
       
-
- 
        this.route.navigate(['/card']);
       })
       .catch(error=>{
@@ -273,7 +268,7 @@ onSubmit(){
   }
   
   
-  /*upload() {
+  upload() {
          
     this.progress.percentage = 0;
     this.currentFileUpload = this.selectedFiles.item(0)
@@ -286,13 +281,13 @@ onSubmit(){
     
     this.selectedFiles = undefined;
   
-  }*/
+  }
 
   login() {
     
 
 
-  console.log("logiiiiiiiiiiiiiin "+this.LoginForm.controls)
+  //console.log("logiiiiiiiiiiiiiin "+this.LoginForm.controls)
 
     this.submitted=true; 
 
@@ -311,12 +306,16 @@ onSubmit(){
 
        this.statusUser=this.M.email.value; // verifier est ce ue utilisateur online ou offline email id unique or user
        
-       localStorage.setItem('status user', this.statusUser);
+      this.adminService.getUserByEmail(this.M.email.value).subscribe((data:any)=>{
+        
+        console.log(data);
 
-      this.route.navigate(['/card']);
- 
+        this.adminService.isConnected(data.id).subscribe();//mettre true dans la base pour specifie user connected
+      
+      })
 
-      }else{
+       this.route.navigate(['/']);
+    }else{
 
        this.verifey=true;
 

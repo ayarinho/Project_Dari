@@ -58,16 +58,12 @@ export class AddUsersComponent implements OnInit {
       addUser(){
 
         this.Change=true;
-
-
           this.auth.AddUser(this.registerForm.value,this.f.password.value).subscribe(data=>{
-
-      
-            console.log(data)
+              
+           // console.log(data)
           Object.keys(data).map((Obj:any)=>{ // map nekhedh key
            
-           
-              if(Obj != "Password have 8 caracter upper lower and number" &&
+            if(Obj != "Password have 8 caracter upper lower and number" &&
               Obj != "Username exits deja dans la base de donner" &&
               Obj != "Email exits deja dans la base de donner" ){
          
@@ -77,8 +73,6 @@ export class AddUsersComponent implements OnInit {
             if(this.registerForm.value.isBlock =="active"){
 
               this.active=true
-
-              alert("ayriiiiiiiiiiiiiiiiiiiinho" + Obj.id)
          
                this.adminService.blockUser(Obj.id).subscribe(); 
       

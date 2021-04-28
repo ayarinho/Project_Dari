@@ -4,6 +4,7 @@ import { FormBuilder, Validators ,AbstractControl} from '@angular/forms';
 import {passValidator} from '../../Login/login/login.component'
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import{cleanString}  from '../profile/profile.component'
 
 @Component({
   selector: 'app-edit-users',
@@ -36,13 +37,7 @@ export class EditUsersComponent implements OnInit, DoCheck{
 
   let json= cleanString(k)
   this.user=JSON.parse(json)
-  console.log(this.user.userName);
-  
-  function cleanString(str:any) {
-    str = str.replace('"[', '[');
-    str = str.replace(']"', ']');
-    return str;
-  }
+  //console.log(this.user.userName);
   
  
  }
@@ -68,9 +63,9 @@ export class EditUsersComponent implements OnInit, DoCheck{
       }
   
  
-   save(){
+    save(){
 
-    console.log(this.registerForm.value)
+    //console.log(this.registerForm.value)
 
     if(this.user.id != null && this.registerForm.value != null ){
 
@@ -78,7 +73,7 @@ export class EditUsersComponent implements OnInit, DoCheck{
       
       if(this.registerForm.value.isBlock =="active"){
 
-        this.active=true
+         this.active=true
    
          this.adminService.blockUser(this.user.id).subscribe(); 
 
@@ -89,7 +84,7 @@ export class EditUsersComponent implements OnInit, DoCheck{
      
 
       this.auth.setPhotoByClient(this.user.id,this.currentFileUpload.name).subscribe();
-      console.log(this.f.isBlock)
+     // console.log(this.f.isBlock)
      
     })
 
@@ -97,15 +92,16 @@ export class EditUsersComponent implements OnInit, DoCheck{
 
     return ;
   }
-   this.adminService.setdata(null);
+   //this.adminService.setdata(null);
    this.router.navigate(['/list-users'])
    
-   this.progress.percentage = 0;
-   this.currentFileUpload = this.selectedFiles.item(0)
-   console.log(this.currentFileUpload.name)
-   this.selectedFiles = undefined;
-   
+
+  this.progress.percentage = 0;
+  this.currentFileUpload = this.selectedFiles.item(0)
+  console.log(this.currentFileUpload.name)
+  this.auth.pushFileToStorage(this.currentFileUpload).subscribe();
   
+  this.selectedFiles = undefined;
 
    }
 

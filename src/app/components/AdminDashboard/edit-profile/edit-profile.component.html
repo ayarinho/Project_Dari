@@ -11,7 +11,7 @@
               
                     <div class="col-md-12">
                         <div class="profile-img-wrap">
-                            <img class="inline-block" 
+                            <img class="inline-block" sizes="100mb"
                             src="assets/uploads/{{user.picture}}" alt="user">
                             <div class="fileupload btn">
                                 <span class="btn-text">edit</span>
@@ -33,7 +33,7 @@
                                 </div>
                                  
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control floating" 
+                                    <input type="text" class="form-control floating" style="color:blue;"
                                     formControlName="lastName" [(ngModel)]="user.lastName" 
                                     name="lastName" 
                                    [ngClass]="{ 'is-invalid': f.lastName.errors }" value="">
@@ -41,7 +41,7 @@
                                        <div *ngIf="f.lastName.errors.required" class="animated fadeInRightBig">
                                            lastname is required</div>
                                    </div>
-                                </div>
+                                </div><br><br><br>
 
                                 <div class="col-md-6">
                                     <input type="text" class="form-control floating" 
@@ -97,7 +97,7 @@
      
             
             <div class="text-center m-t-20">
-                <a class="btn btn-primary submit-btn" href="/users" (click)="Save()">Save</a>
+                <a class="btn btn-primary submit-btn" (click)="Save()">Save</a>
             </div>
         </form>
     </div>

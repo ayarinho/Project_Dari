@@ -1,49 +1,53 @@
-import { Component, DoCheck, OnInit } from '@angular/core';
+import { Component, DoCheck, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as Chart from 'chart.js';
 import { AdminDashboardService } from 'src/app/services/admin-dashboard.service';
-import jwtDecode  from 'jwt-decode';
+
+
 @Component({
   selector: 'app-dashboard1',
   templateUrl: './dashboard1.component.html',
   styleUrls: ['./dashboard1.component.css']
 })
-export class Dashboard1Component implements OnInit ,DoCheck {
+export class Dashboard1Component implements OnInit  {
 
-  tokenObj:any=JSON.parse(localStorage.getItem('token')!); // pour deconnecter automatique if token expirer
+   tokenObj:any=JSON.parse(localStorage.getItem('token')!);
 
    listNewUsers:Array<any>=[];
    listNewUsersFilter:Array<any>=[];
    statusUser:any;
    verifeyStatusUser:boolean=false;
+   listStatusUser:Array<any>=[];
+   userName:any;
+   id:any;
 
   constructor(private adminService:AdminDashboardService,private router:Router) { }
 
 
-  ngDoCheck(){
+search(){
 
+  if(this.userName == ''){
 
-   this.statusUser=localStorage.getItem("status user"); //user connected offline ou online
+    this.ngOnInit();
+  }else{
 
-   /*console.log(this.tokenObj.token);
-   const decode:any=jwtDecode(this.tokenObj.token);  
-   console.log(decode)
-  const date= new Date(0);
-  const tokenexp=date.setUTCSeconds(decode.exp)
-  if(tokenexp.valueOf()<new Date().valueOf()){  // si date token inferieur a la date actuelle token yetfasakh
-    console.log("Le Token est Totalement expirer!!!");
+    this.listStatusUser=this.listStatusUser.filter(res=>{
 
-   localStorage.removeItem('token');
-
-    this.router.navigate(['/login']);
-
-}
-console.log("Date exp token  :" + tokenexp.valueOf());
-console.log("Date actuelle  :" +  new Date().valueOf());*/
-    
+      return res.userName.toLocaleLowerCase().match(this.userName.toLocaleLowerCase());
+    })
   }
+}
+
 
   ngOnInit(): void {
+
+    this.adminService.isDeconnected(this.id).subscribe();
+
+    this.adminService.getAllUsers().subscribe((data:any)=>{  // pour users status lezemhom koll
+
+        this.listStatusUser=data;
+
+    })
 
 
   this.adminService.getAllUsers().subscribe((data:any)=>{
