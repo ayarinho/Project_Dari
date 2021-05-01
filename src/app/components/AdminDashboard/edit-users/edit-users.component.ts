@@ -93,7 +93,7 @@ export class EditUsersComponent implements OnInit, DoCheck{
     return ;
   }
    //this.adminService.setdata(null);
-   this.router.navigate(['/list-users'])
+   //this.router.navigate(['/dashborad/admin/list-users'])
    
 
   this.progress.percentage = 0;

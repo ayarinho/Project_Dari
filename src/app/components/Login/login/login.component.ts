@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { AdminDashboardService } from 'src/app/services/admin-dashboard.service';
 import{cleanString}  from '../../AdminDashboard/profile/profile.component'
+import jwtDecode from 'jwt-decode';
 
 export function passValidator(control: AbstractControl) {
   if (control && (control.value !== null || control.value !== undefined)) {
@@ -53,6 +54,8 @@ export class LoginComponent implements OnInit {
   showLoadingIndicator:boolean=false;
   statusUser:string="";
   userConnected:string="";
+  listNotif:Array<any>=[];
+  listNotif1:Array<any>=[];
 
   constructor(private renderer: Renderer2,   private formBuilder: FormBuilder,
     public auth: AngularFireAuth ,private os :AuthService,private route:Router
@@ -159,13 +162,19 @@ onSubmit(){
            this.verifey=true;
 
            this.messageRegisterFailed=Obj;
-        }
- 
-});
+        }});
+        
 
       Object.values(data).map((Obj:any)=>{
         
           this.idUser=Obj.id;
+
+          this.adminService.addUserNotif(Obj.id).subscribe(data=>{
+
+            console.log("Notiiiif "+data);
+
+          });
+
       })
      
       if(this.idUser != null || this.idUser != undefined){
@@ -178,10 +187,10 @@ onSubmit(){
 
   }else{
 
-    return ;
+    //return ;
   }
 
-  this.progress.percentage = 0;
+  //this.progress.percentage = 0;
   this.currentFileUpload = this.selectedFiles.item(0)
   this.os.pushFileToStorage(this.currentFileUpload).subscribe();
   
@@ -205,7 +214,7 @@ onSubmit(){
 
         localStorage.setItem('token', JSON.stringify({ token: token }));
       
-       this.route.navigate(['/card']);
+       this.route.navigate(['/dashborad/admin']);
       })
       .catch(error=>{
 
@@ -230,7 +239,7 @@ onSubmit(){
         console.log("tokeeeeen ", token);
 
         localStorage.setItem('token', JSON.stringify({ token: token }));
-        this.route.navigate(['/card']);
+        this.route.navigate(['/dashborad/admin']);
       })
       .catch(error=>{
         console.log('error ',error)
@@ -286,12 +295,8 @@ onSubmit(){
   login() {
     
 
-
-  //console.log("logiiiiiiiiiiiiiin "+this.LoginForm.controls)
-
     this.submitted=true; 
 
-    //console.log("kkkkkkkkkkkkkkkk "+this.M.password)
 
     if(this.M.email.value != null && this.M.password.value !=null ){
 
@@ -302,19 +307,28 @@ onSubmit(){
       if(data !="Password incorrect" && data != "Votre compte est blocke security problem" &&
       data != "Email not found" && data != "Invalid email"){
 
+
       localStorage.setItem('token', JSON.stringify({ token: data }));
 
-       this.statusUser=this.M.email.value; // verifier est ce ue utilisateur online ou offline email id unique or user
        
       this.adminService.getUserByEmail(this.M.email.value).subscribe((data:any)=>{
         
         console.log(data);
 
         this.adminService.isConnected(data.id).subscribe();//mettre true dans la base pour specifie user connected
+
+         if(data.role == "Admin"){  // pour specifie dashborad admin yemchilha ken ena admin et client yemchi interface oussema
+
+          this.route.navigate(['/dashborad/admin']);
+
+         }else{
+
+          this.route.navigate(['/login']);
+
+         }
       
       })
 
-       this.route.navigate(['/']);
     }else{
 
        this.verifey=true;

@@ -2,30 +2,34 @@
 
     <div class="header animated fadeInLeftBig">
         <div class="header-left">
-            <a routerLink="/" class="logo">
+           <a routerLink="/dashborad/admin/" class="logo">
                 <img src="assets/img/logo.png" width="35" height="35" alt=""> <span>Dari.tn</span>
             </a>
+
+
         </div>
         <a id="toggle_btn" ><i class="fa fa-bars"></i></a>
         <a id="mobile_btn" class="mobile_btn float-left" ><i class="fa fa-bars"></i></a>
         <ul class="nav user-menu float-right">
             <li  class="nav-item dropdown d-none d-sm-block ">  <!--cursur zedaa lezem-->
                 <a   class="dropdown-toggle nav-link" data-toggle="dropdown"><i class="fa fa-bell-o">
-              </i> <span class="badge badge-pill bg-danger float-right">3</span></a><!--compteru pour notifications-->
+              </i> <span class="badge badge-pill bg-danger float-right" >{{incrementNumberNotif}}</span></a><!--compteru pour notifications-->
                 <div class="dropdown-menu notifications">
                     <div class="topnav-dropdown-header">
                         <span>Notifications</span>
                     </div>
                     <div   class="drop-scroll">
-                        <ul class="notification-list">
+                        <ul class="notification-list"  *ngFor=" let k of listNotif">
                             <li class="notification-message">
-                                <a routerLink="/edit-notification">
+                                <a routerLink="/dashborad/admin/edit-notification">
                                     <div class="media">
                                         <span class="avatar">
-                                            <img alt="John Doe" src="assets/img/user.jpg" class="img-fluid">
+                                            <img alt="John Doe" src="assets/uploads/{{k.picture}} " 
+                                             class="img-fluid">
                                         </span>
                                         <div class="media-body">
-                                            <p class="noti-details"><span class="noti-title">John Doe</span> added new task <span class="noti-title">Patient appointment booking</span></p>
+                                            <p class="noti-details"><span class="noti-title">{{k.userName}}</span> 
+                                                <span class="noti-title"> registred successfully</span></p>
                                             <p class="noti-time"><span class="notification-time">4 mins ago</span></p>
                                         </div>
                                     </div>
@@ -34,20 +38,21 @@
                            
                          
                             <li class="notification-message">
-                                <a routerLink="/edit-notification">
+                                <!--<a routerLink="/dashborad/admin/edit-notification">
                                     <div class="media">
                                         <span class="avatar">G</span>
                                         <div class="media-body">
-                                            <p class="noti-details"><span class="noti-title">Rolland Webber</span> completed task <span class="noti-title">Patient and Doctor video conferencing</span></p>
+                                            <p class="noti-details"><span class="noti-title">Rolland Webber</span> completed task 
+                                                <span class="noti-title">Patient and Doctor video conferencing</span></p>
                                             <p class="noti-time"><span class="notification-time">12 mins ago</span></p>
                                         </div>
                                     </div>
-                                </a>
+                                </a>-->
                        
                         </ul>
                     </div>
                     <div class="topnav-dropdown-footer">
-                        <a routerLink="/edit-notification">View all Notifications</a>
+                        <a routerLink="/dashborad/admin/edit-notification">View all Notifications</a>
                     </div>
                 </div>
             </li>
@@ -64,16 +69,16 @@
             <li class="nav-item dropdown has-arrow">
                 <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown"> <!--curur css au lieu href-->
                     <span class="user-img">
-                        <img class="rounded-circle" src="assets/img/user.jpg" width="24" alt="Admin">
+                        <img class="rounded-circle" src="assets/uploads/{{user.picture}}" width="34" alt="Admin">
                         <span class="status online"></span>
-                    </span>
+                    </span>&nbsp;
                     <span>Admin</span>
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" routerLink="/profile">My Profile</a>
-                    <a class="dropdown-item" routerLink="/edit-profile">Edit Profile</a>
+                    <a class="dropdown-item" routerLink="/dashborad/admin/profile" (click)="getUserById(user.id)">My Profile</a>
+                    <a class="dropdown-item" routerLink="/dashborad/admin/edit-profile">Edit Profile</a>
                    
-                    <a class="dropdown-item" href="login.html">Logout</a>
+                    <a routerLink="/login" class="dropdown-item" (click)="logout(user.id)">Logout</a>
                 </div>
             </li>
         </ul>

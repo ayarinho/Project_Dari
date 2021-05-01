@@ -1,4 +1,9 @@
-import { Component, OnInit,Renderer2 } from '@angular/core';
+import { Component, DoCheck, OnInit,Renderer2 } from '@angular/core';
+import { Router } from '@angular/router';
+import jwtDecode from 'jwt-decode';
+import { AdminDashboardService } from 'src/app/services/admin-dashboard.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { cleanString } from '../profile/profile.component';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,20 +12,91 @@ import { Component, OnInit,Renderer2 } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor(private renderer: Renderer2) { }
+
+  tokenObj:any=JSON.parse(localStorage.getItem('token')!);
+  user:any;
+  listNotif:Array<any>=[];
+  incrementNumberNotif:number=0;
+  userFromFacebook:any;
+
+  constructor(private renderer: Renderer2,private auth:AuthService,private adminService:AdminDashboardService
+    ,private router:Router) { }
 
   ngOnInit(): void {
 
 
+    this.adminService.getUsersByNotifs().subscribe((data:any)=>{
+
+      console.log(data)
+
+      this.listNotif=data;
+      this.incrementNumberNotif=this.listNotif.length;
+    })
+
+      
+      const decode:any=jwtDecode(this.tokenObj.token);  // si on veut afficher utilisateur de facebook from firebase
+      console.log(decode.name)
+
+      this.userFromFacebook=decode;
+
+      if(decode.sub != null || decode.sub!= undefined){
+      this.auth.getUserByUsername(decode.sub).subscribe(data=>{
+
+      console.log(data);
+      this.user=data;
+      
+     });
+  
+      }
+
     this.addJsToElement().onload = () => {
       console.log('le script marche ');
   
-}
+      }
 
   }
 
+  getUserById(id:number){
 
-  addJsToElement(): HTMLScriptElement {
+    console.log(id)
+
+    this.adminService.getUserById(id).subscribe(data=>{
+
+      console.log(data)
+
+    this.adminService.setdata(data);
+  })
+
+   }
+
+
+    logout(id:number){
+
+
+      this.adminService.isDeconnected(id).subscribe(()=>{ 
+  
+          this.adminService.getUserById(id).subscribe((user:any)=>{
+
+      user.notifications.map((e:any)=>{
+
+
+        this.adminService.deleteNotifById(e.idnotif).subscribe();  //lorsque lutilisateur deconnecter notif tetfasakh automatique
+            
+             
+        localStorage.removeItem('token');
+        this.router.navigate(['/login']);
+        
+        });
+        localStorage.removeItem('token');
+        this.router.navigate(['/login']);
+      });
+
+    });
+      }
+
+    
+
+    addJsToElement(): HTMLScriptElement {
 
     const script = document.createElement('script');
     script.type = 'text/javascript';

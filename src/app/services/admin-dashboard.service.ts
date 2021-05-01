@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import {HttpClient,HttpHeaders} from '@angular/common/http'
 import { User } from '../Model/User';
+import { last } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class AdminDashboardService {
     geo:any;
     appointement:any;
     userApp:any;
+    listnotif:Array<any>=[];
 
   constructor(private http:HttpClient) { }
 
@@ -159,5 +161,22 @@ export class AdminDashboardService {
    deleteAppointementById(idapp:number){
 
     return this.http.delete(this.url+"deleteAppById/"+idapp);
+   }
+
+
+   addUserNotif(idUser:any){
+
+   return this.http.get(this.url+"adduserNotif/"+idUser)
+
+   }
+
+   getUsersByNotifs(){
+
+    return this.http.get(this.url+"getUserByNotification")
+   }
+
+   deleteNotifById(id:any){
+
+    return this.http.delete<any>(this.url +"deleteNotifById/"+id)
    }
 }

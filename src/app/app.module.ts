@@ -84,13 +84,13 @@ import { DatePipe } from '@angular/common';
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp({
-      apiKey: "AIzaSyC6lsQHaD9vZ9KgB2q_j0xNTe13s3Nu4hM",
-      authDomain: "dari-2193e.firebaseapp.com",
-      projectId: "dari-2193e",
-      storageBucket: "dari-2193e.appspot.com",
-      messagingSenderId: "837474680155",
-      appId: "1:837474680155:web:fa520f9bc66119c265ee7e",
-      measurementId: "G-4JRY5PMXHJ"
+      apiKey: "AIzaSyDHeGazB2SRCtIWpSeUO-8i1NIliqLgFCY",
+      authDomain: "daritn-736ea.firebaseapp.com",
+      projectId: "daritn-736ea",
+      storageBucket: "daritn-736ea.appspot.com",
+      messagingSenderId: "725180440277",
+      appId: "1:725180440277:web:bf39915f872400a95b4c5c",
+      measurementId: "G-YB8THXE4FB"
     }),
     AngularFireAuthModule,
     HttpClientModule,

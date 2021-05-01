@@ -1,6 +1,8 @@
 import { Component, DoCheck, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiediaries/ngx-qrcode';
 import * as Chart from 'chart.js';
+import jwtDecode from 'jwt-decode';
 import { AdminDashboardService } from 'src/app/services/admin-dashboard.service';
 
 
@@ -13,6 +15,12 @@ export class Dashboard1Component implements OnInit  {
 
    tokenObj:any=JSON.parse(localStorage.getItem('token')!);
 
+   elementType = NgxQrcodeElementTypes.URL;
+   correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
+   valueFacebook = 'https://www.facebook.com/';
+   valueGoogle = 'https://www.google.com/';
+
+
    listNewUsers:Array<any>=[];
    listNewUsersFilter:Array<any>=[];
    statusUser:any;
@@ -20,6 +28,10 @@ export class Dashboard1Component implements OnInit  {
    listStatusUser:Array<any>=[];
    userName:any;
    id:any;
+   verifeyTokenFacebookFirebase:boolean=false;
+   userFacebookFromFirebase:any;
+   userGoogleFromFirebase:any;
+   verifeyTokenGoogle:boolean=false;
 
   constructor(private adminService:AdminDashboardService,private router:Router) { }
 
@@ -40,6 +52,10 @@ search(){
 
 
   ngOnInit(): void {
+
+ 
+
+    
 
     this.adminService.isDeconnected(this.id).subscribe();
 
@@ -133,7 +149,25 @@ search(){
       }
     });
   
+   
+    const decode:any=jwtDecode(this.tokenObj.token);  //pour utilisateur connecter nivai firebase database non relationelle
+    
+    if(decode.firebase.sign_in_provider == "facebook.com" ){  // hethy partie user firebaaaaase
+        
+      this.verifeyTokenFacebookFirebase=true;
+     this.userFacebookFromFirebase=decode;
+    
 
+    }else if(decode.firebase.sign_in_provider == "google.com" ){
+
+           this.userGoogleFromFirebase=decode;
+           this.verifeyTokenGoogle=true;
+    }else{
+          
+      this.verifeyTokenFacebookFirebase=false;
+      this.verifeyTokenGoogle=false;
+
+    }
     
 }
 

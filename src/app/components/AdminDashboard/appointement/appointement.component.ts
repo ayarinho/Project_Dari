@@ -27,7 +27,7 @@ export class AppointementComponent implements OnInit  {
   
   refresh(){
 
-    this.router.navigateByUrl("/list_users",{skipLocationChange:true}).then(()=>{
+    this.router.navigateByUrl("/dashborad/admin/list_users",{skipLocationChange:true}).then(()=>{
 
       this.router.navigate([decodeURI(this.location.path())]);
     });

@@ -25,8 +25,8 @@ export class GeolocalisationComponent implements OnInit ,OnDestroy,DoCheck{
   ngDoCheck(){
 
 
-    let k= JSON.stringify(this.adminService.geo);
-    let json= cleanString(k)
+    let location= JSON.stringify(this.adminService.geo);
+    let json= cleanString(location)
     this.geo=JSON.parse(json)
     //console.log(this.geo);
     

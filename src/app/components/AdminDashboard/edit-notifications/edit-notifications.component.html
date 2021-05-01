@@ -6,23 +6,24 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-8">
                 <div class="activity">
                     <div class="activity-box">
-                        <ul class="activity-list">
-                            <li>
+                        <ul class="activity-list" >
+                            <li      *ngFor='let notif of listNotif'>
                                 <div class="activity-user">
-                                    <a routerLink="/profile" title="Lesley Grauer" data-toggle="tooltip" class="avatar">
-                                        <img alt="Lesley Grauer" src="assets/img/user.jpg" class="img-fluid rounded-circle">
+                                    <a  title="Lesley Grauer" data-toggle="tooltip" class="avatar">
+                                        <img alt="Lesley Grauer" src="assets/uploads/{{notif.picture}}" class="img-fluid rounded-circle">
                                     </a>
                                 </div>
                                 <div class="activity-content">
                                     <div class="timeline-content">
-                                        <a href="profile.html" class="name">Lesley Grauer</a> added new task <a href="#">Hospital Administration</a>
+                                        <a class="name">{{notif.userName}}</a> registred successfully
+                                        <a href="#">in Dari.tn</a>
                                         <span class="time">4 mins ago</span>
                                     </div>
                                 </div>
-                                <a class="activity-delete" href="#" title="Delete">&times;</a>
+                                <a class="activity-delete"  title="Delete" (click)="deleteNotifById(notif.id)">&times;</a>
                             </li>
                            
                        

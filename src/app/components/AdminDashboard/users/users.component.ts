@@ -48,7 +48,7 @@ export class UsersComponent implements OnInit {
        this.adminService.setdataGeo(this.stringObject)
     
       })
-      this.router.navigate(['/geolocation'])
+      this.router.navigate(['/dashborad/admin/geolocation'])
            
     }
 
@@ -57,7 +57,7 @@ export class UsersComponent implements OnInit {
 
   refresh(){
 
-    this.router.navigateByUrl("/_users",{skipLocationChange:true}).then(()=>{
+    this.router.navigateByUrl("/dashborad/admin/_users",{skipLocationChange:true}).then(()=>{
 
       this.router.navigate([decodeURI(this.location.path())]);
     })

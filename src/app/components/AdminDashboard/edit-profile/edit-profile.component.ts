@@ -33,9 +33,6 @@ export class EditProfileComponent implements OnInit,DoCheck {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email :['',[Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
-      //userName: ['', Validators.required],
-      //password: ['', [Validators.required]],
-      //ConfirmPassword: ['', [passValidator,Validators.required]],
       dateNaissance:['', [Validators.required]],
       phoneNumber:['', [Validators.required]],
       lieu:['', [Validators.required]],
@@ -50,10 +47,7 @@ export class EditProfileComponent implements OnInit,DoCheck {
   
     let json= cleanString(k)
     this.user=JSON.parse(json)
-    //console.log(this.user);
-   
-    
-   
+  
    }
 
    Save(){
@@ -67,7 +61,7 @@ export class EditProfileComponent implements OnInit,DoCheck {
       
        });
 
-       this.router.navigate(['/users'])
+       this.router.navigate(['/dashborad/admin/users'])
 
   } else{
 

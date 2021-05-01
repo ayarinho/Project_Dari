@@ -14,11 +14,11 @@ const routes: Routes = [
 .then(m=>m.LoginModule)},
 
 {
-  path: '',
+  path: 'dashborad',
   component: AdminLayoutComponent,   // hatina children alkhter fama router outlet fi composant adminlayout
   children: [
       {
-    path: '',loadChildren:()=>import("../app/components/AdminDashboard/admin-module")
+    path: 'admin',loadChildren:()=>import("../app/components/AdminDashboard/admin-module")
     .then(m=>m.AdminModule)
 }]},
 

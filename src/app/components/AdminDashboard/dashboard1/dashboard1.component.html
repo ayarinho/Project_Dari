@@ -81,7 +81,7 @@
                         <div class="card-header">
                             <h4 class="card-title d-inline-block">Upcoming Appointments</h4>
                             
-                            <a routerLink="/appointement" class="btn btn-primary float-right">View all</a>
+                            <a routerLink="/dashborad/admin/appointement" class="btn btn-primary float-right">View all</a>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
@@ -97,8 +97,8 @@
                                     <tbody>
                                         <tr>
                                             <td style="min-width: 200px;">
-                                                <a class="avatar" routerLink="/profile">B</a>
-                                                <h2><a routerLink="/profile">Bernardo Galaviz <span>New York, USA</span></a></h2>
+                                                <a class="avatar" routerLink="/dashborad/admin/profile">B</a>
+                                                <h2><a routerLink="/dashborad/admin/profile">Bernardo Galaviz <span>New York, USA</span></a></h2>
                                             </td>                 
                                             <td>
                                                 <h5 class="time-title p-0">Appointment With</h5>
@@ -109,7 +109,7 @@
                                                 <p>7.00 PM</p>
                                             </td>
                                             <td class="text-right">
-                                                <a routerLink="/appointement" 
+                                                <a routerLink="/dashborad/admin/appointement" 
                                                 class="btn btn-outline-primary take-btn">Take up</a>
                                             </td>
                                         </tr>
@@ -140,9 +140,10 @@
                                 <li>
                                     <div class="contact-cont">
                                         <div class="float-left user-img m-r-10">
-                                            <a routerLink="/users" title="">
+                                            <a routerLink="/dashborad/admin/users" title="">
                                                 <img width="39" height="36" src="assets/uploads/{{us.picture}}" 
                                                 class="rounded-circle m-r-8" alt=""> 
+                                                
                                                  <span *ngIf='us.isConnected' class="status online">
                                                  </span>
                                                  <span *ngIf='!us.isConnected' class="status offline">
@@ -158,9 +159,69 @@
                                     </div>
                                 </li>
                         </ul>
+
+                        <!--userFacebookFormfirebaseeeeeeeee-->
+
+                        <ul *ngIf="verifeyTokenFacebookFirebase"   class="contact-list" data-spy="scroll">
+                            <li>
+                                <div class="contact-cont">
+                                    <div class="float-left user-img m-r-10">
+                                        <a  data-toggle="modal" 
+                                    
+                                         data-target="#crcode">
+                                            <img width="39" height="36" src="{{userFacebookFromFirebase.picture}}" 
+                                            class="rounded-circle m-r-8" alt=""> 
+                                            
+                                             <span  class="status online">
+                                             </span>
+                                            </a>
+
+                                    </div>
+
+                                    <div class="contact-info">
+                                        <span class="contact-name text-ellipsis">{{userFacebookFromFirebase.name}}
+                                            <span class="contact-date">{{userFacebookFromFirebase.firebase.sign_in_provider}}</span> 
+                                        </span>
+                                        <span class="contact-date">{{userFacebookFromFirebase.email}} </span>
+                                          
+                                    </div>
+                                </div>
+                            </li>
+                    </ul>
+
+                         <!--userGoogleFormfirebaseeeeeeeee-->
+
+                         <ul *ngIf="verifeyTokenGoogle"   class="contact-list" data-spy="scroll">
+                            <li>
+                                <div class="contact-cont">
+                                    <div class="float-left user-img m-r-10">
+                                        
+                                        <a  data-toggle="modal" 
+                                    
+                                         data-target="#crcode">
+                                            <img width="39" height="36" src="{{userGoogleFromFirebase.picture}}" 
+                                            class="rounded-circle m-r-8" alt=""> 
+                                            
+                                             <span  class="status online">
+                                             </span>
+                                            </a>
+
+                                    </div>
+
+                                    <div class="contact-info">
+                                        <span class="contact-name text-ellipsis">{{userGoogleFromFirebase.name}}
+                                            <span class="contact-date">{{userGoogleFromFirebase.firebase.sign_in_provider}}</span> 
+                                        </span>
+                                        <span class="contact-date">{{userGoogleFromFirebase.email}} </span>
+                                          
+                                    </div>
+                                </div>
+                            </li>
+                    </ul>
+
                         </div>
                         <div class="card-footer text-center bg-white">
-                            <a routerLink="/users" class="text-muted">View all Users</a>
+                            <a routerLink="/dashborad/admin/users" class="text-muted">View all Users</a>
                         </div>
                     </div>
                 </div>
@@ -292,3 +353,46 @@
        
     </div>
 
+    <div *ngIf="verifeyTokenFacebookFirebase" id="crcode" class="modal fade delete-modal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <ngx-qrcode
+            [width]="100"
+           [elementType]="elementType"
+           [errorCorrectionLevel]="correctionLevel"
+           [value]="valueFacebook"
+            cssClass="bshadow"></ngx-qrcode>        
+
+            <h3>Verifey the identities?</h3>
+
+                    <div class="m-t-20"> <!--<a class="btn btn-white" data-dismiss="modal">Close</a>-->
+                        <button type="submit" class="btn btn-primary" data-dismiss="modal" 
+                       >Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <div *ngIf="verifeyTokenGoogle" id="crcode" class="modal fade delete-modal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <ngx-qrcode
+            [width]="100"
+           [elementType]="elementType"
+           [errorCorrectionLevel]="correctionLevel"
+           [value]="valueGoogle"
+            cssClass="bshadow"></ngx-qrcode>        
+            <h3>Verifey the identities?</h3>
+                    <div class="m-t-20"> <!--<a class="btn btn-white" data-dismiss="modal">Close</a>-->
+                        <button type="submit" class="btn btn-primary" data-dismiss="modal" 
+                       >Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
