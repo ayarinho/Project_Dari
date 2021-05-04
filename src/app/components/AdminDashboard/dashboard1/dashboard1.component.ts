@@ -18,7 +18,7 @@ export class Dashboard1Component implements OnInit  {
    elementType = NgxQrcodeElementTypes.URL;
    correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
    valueFacebook = 'https://www.facebook.com/';
-   valueGoogle = 'https://www.google.com/';
+   valueGoogle = 'https://mail.google.com/';
 
 
    listNewUsers:Array<any>=[];
@@ -32,6 +32,9 @@ export class Dashboard1Component implements OnInit  {
    userFacebookFromFirebase:any;
    userGoogleFromFirebase:any;
    verifeyTokenGoogle:boolean=false;
+   listAppointement:Array<any>=[];
+   listNewAppoitementFilter:Array<any>=[];
+   listA :Array<any>=[];
 
   constructor(private adminService:AdminDashboardService,private router:Router) { }
 
@@ -53,8 +56,29 @@ search(){
 
   ngOnInit(): void {
 
- 
 
+   
+    this.adminService.getAllUsers().subscribe((data:any)=>{
+
+      this.listAppointement=data;
+    
+      this.listAppointement.filter((e,i)=>{
+
+
+        if(i<6){
+
+          this.listNewAppoitementFilter.push(e);
+        }
+        return this.listNewUsersFilter;
+          
+       })
+
+
+    
+    });
+  
+    
+   
     
 
     this.adminService.isDeconnected(this.id).subscribe();

@@ -85,28 +85,21 @@
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table mb-0">
-                                    <thead class="d-none">
-                                        <tr>
-                                            <th>Patient Name</th>
-                                            <th>Doctor Name</th>
-                                            <th>Timing</th>
-                                            <th class="text-right">Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
+                                <table class="table mb-0"  >
+                                   
+                                    <tbody *ngFor="let user of listNewAppoitementFilter"> 
+                                        <tr  *ngFor="let app of user.appointment">
                                             <td style="min-width: 200px;">
-                                                <a class="avatar" routerLink="/dashborad/admin/profile">B</a>
-                                                <h2><a routerLink="/dashborad/admin/profile">Bernardo Galaviz <span>New York, USA</span></a></h2>
+                                                <img class="avatar" routerLink="/dashborad/admin/profile" src="assets/uploads/{{user.picture}}">
+                                                <h2><a routerLink="/dashborad/admin/profile">{{user.userName}} <span>{{user.lieu}}</span></a></h2>
                                             </td>                 
                                             <td>
-                                                <h5 class="time-title p-0">Appointment With</h5>
-                                                <p>Dr. Cristina Groves</p>
+                                                <h5 class="time-title p-0">Appointment Date</h5>
+                                                <p>{{app.dateAppointement}}</p>
                                             </td>
                                             <td>
-                                                <h5 class="time-title p-0">Timing</h5>
-                                                <p>7.00 PM</p>
+                                                <h5 class="time-title p-0">State</h5>
+                                                <p>{{app.state}}</p>
                                             </td>
                                             <td class="text-right">
                                                 <a routerLink="/dashborad/admin/appointement" 

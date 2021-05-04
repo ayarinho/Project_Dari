@@ -93,6 +93,11 @@ export class AdminDashboardService {
     this.appointement=data1
    }
 
+   getAllAppointement(){
+
+    return this.http.get(this.url+"getallAppoitement");
+   }
+
 
 
    

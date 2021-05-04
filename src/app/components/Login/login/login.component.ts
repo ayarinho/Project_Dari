@@ -140,10 +140,11 @@ onSubmit(){
 
   this.Change=true;
 
-  console.log(this.registerForm.status);
+  console.log(this.registerForm.controls);
 
   
-  if(this.registerForm.controls.ConfirmPassword.invalid == false){ //control sur confirmpassword et password 
+  if(this.registerForm.controls.ConfirmPassword.status == "VALID" &&
+    this.registerForm.controls.email.status == "VALID"){ //control sur confirmpassword et password 
 
     this.os.AddUser(this.registerForm.value,this.f.password.value).subscribe(data=>{
 
@@ -210,7 +211,7 @@ onSubmit(){
 
       data.user?.getIdToken().then(token=>{
 
-        console.log("tokeeeeen ", token);
+        //console.log("tokeeeeen ", token);
 
         localStorage.setItem('token', JSON.stringify({ token: token }));
       
@@ -236,7 +237,7 @@ onSubmit(){
 
       data.user?.getIdToken().then(token=>{
 
-        console.log("tokeeeeen ", token);
+        //console.log("tokeeeeen ", token);
 
         localStorage.setItem('token', JSON.stringify({ token: token }));
         this.route.navigate(['/dashborad/admin']);
@@ -317,7 +318,7 @@ onSubmit(){
 
         this.adminService.isConnected(data.id).subscribe();//mettre true dans la base pour specifie user connected
 
-         if(data.role == "Admin"){  // pour specifie dashborad admin yemchilha ken ena admin et client yemchi interface oussema
+         /*if(data.role == "Admin"){  // pour specifie dashborad admin yemchilha ken ena admin et client yemchi interface oussema
 
           this.route.navigate(['/dashborad/admin']);
 
@@ -325,7 +326,9 @@ onSubmit(){
 
           this.route.navigate(['/login']);
 
-         }
+         }*/
+         this.route.navigate(['/dashborad/admin']);
+
       
       })
 
@@ -341,13 +344,8 @@ onSubmit(){
 
         this.show=true;                    // aparitionnde recaptcha
       }
-
-      
-
-      
-    });
-
-    }else{
+  });
+     }else{
 
       return;
     }
