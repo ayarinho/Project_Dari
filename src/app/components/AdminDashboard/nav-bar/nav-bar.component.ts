@@ -24,8 +24,29 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit(): void {
 
+    /*his.adminService.getAllReclamationsByNotifAndUser().subscribe(data=>{
 
-    this.adminService.getUsersByNotifs().subscribe((data:any)=>{
+   
+      Object.keys(data).map((key:any)=>{ // map nekhedh key
+
+       
+      Object.values(data).map((value:any)=>{ // map nekhedh key
+       
+      
+        let ObjectLists={"userName":key,"picture":value};
+
+         this.listReclamationNotif.push(ObjectLists);
+
+ 
+        });
+     });
+     this.incrementNumberNotif=this.listReclamationNotif.length;
+     console.log("lissssssssssssssssssssss", this.listReclamationNotif)
+
+      });*/
+
+
+    this.adminService.getUsersByNotifs().subscribe((data:any)=>{   // afficher user registred by notification added
 
       console.log(data)
 
@@ -55,6 +76,10 @@ export class NavBarComponent implements OnInit {
       }
 
   }
+
+
+
+
 
   getUserById(id:number){
 

@@ -41,6 +41,8 @@ import {Ng2SearchPipeModule} from 'ng2-search-filter'
 import {NgxPaginationModule} from 'ngx-pagination';
 import { GeolocalisationComponent } from './components/AdminDashboard/geolocalisation/geolocalisation.component';
 import { DatePipe } from '@angular/common';
+import { AnnonceComponent } from './components/AdminDashboard/annonce/annonce.component';
+
 
 
 @NgModule({
@@ -67,6 +69,7 @@ import { DatePipe } from '@angular/common';
     MailComponent,
     EditAppointementComponent,
     GeolocalisationComponent,
+    AnnonceComponent,
     
     
     

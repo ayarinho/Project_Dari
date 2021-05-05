@@ -17,7 +17,7 @@ export class AdminDashboardService {
 
   constructor(private http:HttpClient) { }
 
-  url= "http://localhost:8086/";
+  url= "http://localhost:8087/";
 
 
   getAllUsers():Observable<any>{
@@ -52,7 +52,7 @@ export class AdminDashboardService {
  
   updateUser(user:any,id:number){
 
-    let url="http://localhost:8086/updateUser/"+ id;
+    let url="http://localhost:8087/updateUser/"+ id;
     return this.http.put(url, user);
   }
 
@@ -103,13 +103,13 @@ export class AdminDashboardService {
    
   updateAppointement(appointement:any,idApp:number){
 
-    let url="http://localhost:8086/updateAppointment/"+ idApp;
+    let url="http://localhost:8087/updateAppointment/"+ idApp;
     return this.http.put(url, appointement,{responseType:'text' as 'json'});
   }
 
   updateProfileUser(user:any,idUser:number){
 
-    let url="http://localhost:8086/updateProfileUser/"+ idUser;
+    let url="http://localhost:8087/updateProfileUser/"+ idUser;
     return this.http.put(url, user,{responseType:'text' as 'json'});
   }
 
@@ -183,5 +183,23 @@ export class AdminDashboardService {
    deleteNotifById(id:any){
 
     return this.http.delete<any>(this.url +"deleteNotifById/"+id)
+   }
+
+
+   deleteAdById(idAd:any){
+
+     return this.http.delete(this.url + "deleteAdById/"+idAd)
+   }
+
+
+   getAllReclamationsByNotifAndUser(){
+
+    return this.http.get(this.url+"getAllReclamationsByNotifAndUser");
+   }
+
+
+   getAdByDistanceSorting(id:any){
+
+    return this.http.get(this.url+"getAdsByDistanceSorting/"+id);
    }
 }

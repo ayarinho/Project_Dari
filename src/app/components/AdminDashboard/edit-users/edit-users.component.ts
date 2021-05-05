@@ -1,6 +1,6 @@
-import { Component, OnInit,AfterViewInit, ViewChild, AfterViewChecked, DoCheck, AfterContentChecked } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { AdminDashboardService } from 'src/app/services/admin-dashboard.service';
-import { FormBuilder, Validators ,AbstractControl} from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import {passValidator} from '../../Login/login/login.component'
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
@@ -113,8 +113,7 @@ export class EditUsersComponent implements OnInit, DoCheck{
     console.log(event.target.files)
   }
   
-  
-  
+ 
 
   }
    

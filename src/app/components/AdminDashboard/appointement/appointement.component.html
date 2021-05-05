@@ -20,7 +20,7 @@
 
         </div> <br>
 
-        <div class="row">
+        <div class="row animated rotateInUpLeft">
             <div class="col-md-12">
                 <div class="table-responsive">
                     <table class="table table-striped custom-table">
@@ -34,11 +34,10 @@
                                 <th>Appointment Date</th>
                                 <th>State</th>
                                 <th>Purchased</th>
-                                <th class="text-right">Action</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody  *ngFor="let user of listAppointement
-                        ; let i=index">
+                        <tbody  *ngFor="let user of listAppointement; let i=index">
                            
                             <tr  *ngFor="let app of user.appointment  | paginate: {itemsPerPage:2,currentPage:p}  ">
                                 <td>APT000{{app.idAppointement}}</td>
@@ -59,26 +58,23 @@
                                     <span *ngIf="!app.purchased" class="custom-badge status-red">NotPurchased</span>
                                 </td>
 
-                                <td class="text-right">
-                                    <div class="dropdown dropdown-action">
-                                        <a href="#" class="action-icon dropdown-toggle" 
-                                        data-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-ellipsis-v"></i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item"
-                                            (click)="getAppByUser(user,app)"
-                                             routerLink="/dashborad/admin/edit-appointement">
-                                                <i class="fa fa-pencil m-r-5" 
-                                                 >
 
-                                                </i>Edit</a>
-                                            <a class="dropdown-item" href="#" data-toggle="modal"
-                                             data-target="#delete_employee" 
-                                             (click)="getIdApp(app.idAppointement)">
-                                                <i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                        </div>
-                                    </div>
-                                </td>
+                                <td class="items">
+                                   
+
+                                    <a class="dropdown-item"    (click)="getAppByUser(user,app)"
+                                    routerLink="/dashborad/admin/edit-appointement">
+                                    <img width="27" height="21" src="../../../../assets/icons8-edit (1).gif" 
+                                    class="rounded-circle m-r-8" alt=""></a>
+
+                                    <a class="dropdown-item"  data-toggle="modal" 
+                                    (click)="getIdUser(user.id)"
+                                     data-target="#delete_employee">
+                                     <img width="27" height="21" src="../../../../assets/icons8-delete-48.png" 
+                                        class="rounded-circle m-r-8" alt=""> </a>
+                              
+                                 </td>
+
                             </tr>
                         </tbody>
                     </table>

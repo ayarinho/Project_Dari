@@ -10,7 +10,10 @@
     justify-content: center;
 }
 
+img{
 
+    cursor: pointer;
+}
    
 td{
     font-family: Verdana, Geneva, Tahoma, sans-serif;

@@ -12,7 +12,8 @@
         </div>
 
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
-        <div class="row doctor-grid" >
+
+        <div class="row doctor-grid animated rotateInDownRight" >
 
             <div class="col-md-4 col-sm-4  col-lg-3" *ngFor="let user of listNewUsers | paginate: {itemsPerPage:5,currentPage:p}">
                 <div class="profile-widget">
@@ -38,6 +39,7 @@
                     <h6 class="doctor-name text-ellipsis"><p >{{user.firstName}} {{user.lastName}}</p></h6>
                     <div class="doc-prof">{{user.role}}</div>
                     <div class="user-country" >
+                        
                         <i class="fa fa-map-marker" (click)="getLocationProp(user.lieu)" ></i>{{user.lieu}}
                     </div>
                 </div>

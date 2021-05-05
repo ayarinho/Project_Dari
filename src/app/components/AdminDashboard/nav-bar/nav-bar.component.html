@@ -20,8 +20,26 @@
                         <span>Notifications</span>
                     </div>
                     <div   class="drop-scroll">
-                        <ul class="notification-list"  *ngFor=" let k of listNotif">
+                        <ul class="notification-list"  *ngFor=" let notif of listNotif">
                             <li class="notification-message">
+                                <a routerLink="/dashborad/admin/edit-notification">
+                                    <div class="media">
+                                        <span class="avatar">
+                                            <img alt="John Doe" src="assets/uploads/{{notif.picture}} " 
+                                             class="img-fluid">
+                                        </span>
+                                        <div class="media-body">
+                                            <p class="noti-details"><span class="noti-title">{{notif.userName}}</span> 
+                                                <span class="noti-title"> registred successfully</span></p>
+                                            <p class="noti-time"><span class="notification-time">4 mins ago</span></p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <!--<ul class="notification-list" *ngFor="let k of listReclamationNotif">
+                            <li class="notification-message" >
                                 <a routerLink="/dashborad/admin/edit-notification">
                                     <div class="media">
                                         <span class="avatar">
@@ -30,27 +48,14 @@
                                         </span>
                                         <div class="media-body">
                                             <p class="noti-details"><span class="noti-title">{{k.userName}}</span> 
-                                                <span class="noti-title"> registred successfully</span></p>
+                                                <span class="noti-title"> user post in comments bad words !! </span></p>
                                             <p class="noti-time"><span class="notification-time">4 mins ago</span></p>
                                         </div>
                                     </div>
                                 </a>
                             </li>
                            
-                         
-                            <li class="notification-message">
-                                <!--<a routerLink="/dashborad/admin/edit-notification">
-                                    <div class="media">
-                                        <span class="avatar">G</span>
-                                        <div class="media-body">
-                                            <p class="noti-details"><span class="noti-title">Rolland Webber</span> completed task 
-                                                <span class="noti-title">Patient and Doctor video conferencing</span></p>
-                                            <p class="noti-time"><span class="notification-time">12 mins ago</span></p>
-                                        </div>
-                                    </div>
-                                </a>-->
-                       
-                        </ul>
+                        </ul>-->
                     </div>
                     <div class="topnav-dropdown-footer">
                         <a routerLink="/dashborad/admin/edit-notification">View all Notifications</a>

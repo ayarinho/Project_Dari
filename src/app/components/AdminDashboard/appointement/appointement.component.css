@@ -5,3 +5,17 @@ td{
   font-weight: 500;
 }
 
+.items{
+
+  display: flex;
+  justify-content: space-around;
+}
+
+th{
+  text-align: center;
+}
+
+td{
+
+  text-align: center;
+}

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { Dashboard1Component } from '../AdminDashboard/dashboard1/dashboard1.component';
 import { AddUsersComponent } from './add-users/add-users.component';
+import { AnnonceComponent } from './annonce/annonce.component';
 import { AppointementComponent } from './appointement/appointement.component';
 import { ChatComponent } from './chat/chat.component';
 import { EditAppointementComponent } from './edit-appointement/edit-appointement.component';
@@ -37,7 +38,8 @@ export const routes: Routes = [
   {path:"chat", component:ChatComponent},
   {path:"mail", component:MailComponent},
   {path:"edit-appointement", component:EditAppointementComponent},
-  {path:"geolocation", component:GeolocalisationComponent}
+  {path:"geolocation", component:GeolocalisationComponent},
+  {path:"annonce", component:AnnonceComponent}
  
 
  

@@ -20,20 +20,7 @@
             </div> 
 
             <pagination-controls (pageChange)="p = $event"></pagination-controls>
-            <!--<div class="col-sm-6 col-md-3">
-                <div class="form-group form-focus select-focus">
-                    <label class="focus-label">Role</label>
-                    <select class="select floating">
-                        <option>Select Role</option>
-                        <option>Nurse</option>
-                        <option>Pharmacist</option>
-                       
-                    </select>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-3">
-                <a href="#" class="btn btn-success btn-block"> Search </a>
-            </div>-->
+        
         </div><br>
         <div class="row">
             <div class="col-md-12">
@@ -78,14 +65,14 @@
 
                                             <a class="dropdown-item" (click)="getIdUser(user.id)" 
                                             routerLink="/dashborad/admin/edit-users">
-                                                <i class="fa fa-pencil m-r-5"></i></a>
+                                            <img width="27" height="21" src="../../../../assets/icons8-edit (1).gif" 
+                                            class="rounded-circle m-r-8" alt=""></a>
 
                                             <a class="dropdown-item"  data-toggle="modal" 
                                             (click)="getIdUser(user.id)"
                                              data-target="#delete_employee">
-                                             <i class="fa fa-trash-o m-r-5">
-
-                                             </i> </a>
+                                             <img width="27" height="21" src="../../../../assets/icons8-delete-48.png" 
+                                                class="rounded-circle m-r-8" alt=""> </a>
                                       
                                 </td>
                             </tr>
