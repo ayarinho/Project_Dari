@@ -22,6 +22,8 @@ export class AppointementComponent implements OnInit  {
   getIdApp(idApp:number){
 
     this.idAppointement=idApp;
+
+    console.log("iddddddddddddddddddddddddddddddddddddd ",this.idAppointement)
        
   }
   

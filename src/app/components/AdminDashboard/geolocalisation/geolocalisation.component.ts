@@ -61,7 +61,7 @@ export class GeolocalisationComponent implements OnInit ,OnDestroy,DoCheck{
 
       let popup = L.popup()
         .setLatLng(latLong)
-        .setContent('I am Subrat')
+        .setContent('I am here')
         .openOn(mymap);
     });
     this.watchPosition();

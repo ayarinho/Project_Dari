@@ -20,7 +20,6 @@ export class EditAppointementComponent implements OnInit ,DoCheck{
   dateAppointementConvert:any;
   appointement:any;
   userApptName:string='';
-  
 
 constructor(private adminService:AdminDashboardService,private formBuilder: FormBuilder,
   public datepipe: DatePipe) { }
@@ -40,6 +39,7 @@ constructor(private adminService:AdminDashboardService,private formBuilder: Form
   //console.log(this.userApp);
   //console.log(this.appointement);
 
+
    for(let appt of this.userApp.appointment){
 
           if(appt.idAppointement == this.appointement.idAppointement){
@@ -47,7 +47,7 @@ constructor(private adminService:AdminDashboardService,private formBuilder: Form
 
             this.userApptName=this.userApp.firstName;
           }
-    
+
    }
 
   /*let date= this.datepipe.transform(this.appointement.dateAppointement,"dd/MM/yyyy HH:mm");
@@ -97,18 +97,36 @@ this.registerForm.value.dateAppointement=date;
 
 console.log(this.registerForm.value)
 
-console.log("asbaaaaaaaaaaaaaaaaaaaaaaaaaa" +this.registerForm.value.purchased)
+console.log("saleeeeeeeeeem" +this.registerForm.value.purchased)
 console.log(this.appointement.idAppointement)
 
 this.adminService.updateAppointement(this.registerForm.value,this.appointement.idAppointement)
 .subscribe((data:any)=>{
 
-  console.log("yaml 3aaaaaaay  "+data.id)
+  console.log("yaml 3aaaaaaay  "+data.id);
+
+  
 
   if(data=="Appointement updated with success"){
 
     this.messageSuccesAppointement=data;
 
+    /*if(this.registerForm.value.visibility == true){
+     
+      this.adminService.isVisibility(data.id).subscribe();
+ }else{
+
+      this.adminService.isNotVisibility(data.id).subscribe();
+ }
+       
+      
+    if(this.registerForm.value.purchased == true){
+     
+      this.adminService.isPurchased(data.id).subscribe();
+ }else{
+
+      this.adminService.isNotPurchased(data.id).subscribe();
+ }*/
      
   }else{
 

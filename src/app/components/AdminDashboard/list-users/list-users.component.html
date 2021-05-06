@@ -9,19 +9,30 @@
                     <i class="fa fa-user-plus"></i> Add user</a>
             </div>
         </div>
-        <div class="row filter-row">
-       
-            <div class="col-sm-6 col-md-3">
-               
-                    
-                    <input type="text" class="form-control" placeholder="Username" name="userName" 
-                    [(ngModel)]="userName" (ngModelChange)='search()'>
-          
-            </div> 
 
-            <pagination-controls (pageChange)="p = $event"></pagination-controls>
-        
-        </div><br>
+        <div class="row filter-row">
+        <div class="BoxContainer">
+            <table class="elementsContainer">
+                <tr>
+
+                    <td>
+
+                        <input class="text" placeholder="Search" class="search"   [(ngModel)]="userName" (ngModelChange)='search()'>
+                    </td>
+
+                    <td>
+                        <a><i class="fa fa-search" aria-hidden="true"></i></a>
+                    </td>
+                </tr>
+
+            </table>
+
+
+        </div>
+
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+         <br>
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">

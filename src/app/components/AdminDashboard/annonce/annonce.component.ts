@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AdminDashboardService } from 'src/app/services/admin-dashboard.service';
 import{Location} from '@angular/common'
 import { Router } from '@angular/router';
+import jwtDecode from 'jwt-decode';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-annonce',
@@ -10,6 +12,10 @@ import { Router } from '@angular/router';
 })
 export class AnnonceComponent implements OnInit {
 
+  tokenObj:any=JSON.parse(localStorage.getItem('token')!);
+
+
+
   listAds:Array<any>=[];
   idAd:number=0;
   p:number=1;
@@ -17,7 +23,8 @@ export class AnnonceComponent implements OnInit {
   listSortingAdsDistance:Array<any>=[];
   verifeySorting:boolean=false;
 
-  constructor(private adminService:AdminDashboardService,private router:Router,private location:Location) { }
+  constructor(private adminService:AdminDashboardService,private router:Router,private location:Location,
+    private auth:AuthService) { }
 
 
   sortingByDistanceDown(){
@@ -27,7 +34,13 @@ export class AnnonceComponent implements OnInit {
 
   sortingByDistanceUp(){
 
-    this.adminService.getAdByDistanceSorting(32).subscribe((data:any)=>{
+    const decode:any=jwtDecode(this.tokenObj.token);
+
+    this.auth.getUserByUsername(decode.sub).subscribe((data:any)=>{   //choisir utilisateur connecter eli howa admin pour filtrer les annonces a travers son id by distace
+
+    //console.log("hethaaa tebaaaa3 distance decode  ",decode)
+
+    this.adminService.getAdByDistanceSorting(data.id).subscribe((data:any)=>{
  
      this.listSortingAdsDistance=data;
   
@@ -36,6 +49,8 @@ export class AnnonceComponent implements OnInit {
      console.log("distanccccccccccccccccccccce ",this.listSortingAdsDistance)
       
     })
+    //console.log("hrthaa user zabour ",data)
+  })
   }
     
   search(){

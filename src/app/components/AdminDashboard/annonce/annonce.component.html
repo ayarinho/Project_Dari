@@ -9,18 +9,29 @@
             </div>
         </div>
         <div class="row filter-row">
-       
-            <div class="col-sm-6 col-md-3">
-               
-                    
-                    <input type="text" class="form-control" placeholder="Username" name="userName" 
-                    [(ngModel)]="userName" (ngModelChange)='search()'>
-          
-            </div> 
-
+            <div class="BoxContainer">
+                <table class="elementsContainer">
+                    <tr>
+    
+                        <td>
+    
+                            <input class="text" placeholder="Search" class="search"   [(ngModel)]="userName" (ngModelChange)='search()'>
+                        </td>
+    
+                        <td>
+                            <a><i class="fa fa-search" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+    
+                </table>
+    
+    
+            </div>
+    
             <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
+             <br>
         
-        </div><br>
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
@@ -42,9 +53,9 @@
                         </thead>
 
 
-                        <tbody [hidden]="verifeySorting" *ngFor="let user of listAds  | paginate: {itemsPerPage:2,currentPage:p} ">
+                        <tbody [hidden]="verifeySorting" *ngFor="let user of listAds ">
 
-                            <tr *ngFor="let ad of user.ads" class="animated fadeInDown" >
+                            <tr *ngFor="let ad of user.ads  | paginate: {itemsPerPage:3,currentPage:p}" class="animated fadeInDown" >
                                 <td><img width="40" height="35" src="assets/uploads/{{user.picture}}" 
                                     class="rounded-circle m-r-8" alt=""> {{user.userName}}</td>
                                 <td>{{ad.area}}</td>
@@ -96,9 +107,10 @@
                        
                         </thead>
 
-                        <tbody [hidden]="!verifeySorting" >
+                        <tbody [hidden]="!verifeySorting" 
+                        *ngFor="let ad of listSortingAdsDistance  | paginate: {itemsPerPage:6,currentPage:p} ">
 
-                            <tr *ngFor="let ad of listSortingAdsDistance  | paginate: {itemsPerPage:2,currentPage:p} " class="animated fadeInDown" >
+                            <tr class="animated fadeInDown" >
                                
                                 <td>{{ad.area}}</td>
                                 <td>{{ad.description}}</td>

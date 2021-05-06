@@ -9,15 +9,29 @@
                
             </div>
 
-            <div class="col-sm-6 col-md-3">
-               
-                    
-                <input type="text" class="form-control" placeholder="Username" name="userName" 
-                [(ngModel)]="userName" (ngModelChange)='search()'>
-      
-        </div> 
-            <pagination-controls (pageChange)="p = $event"></pagination-controls>
-
+            <div class="row filter-row">
+                <div class="BoxContainer">
+                    <table class="elementsContainer">
+                        <tr>
+        
+                            <td>
+        
+                                <input class="text" placeholder="Search" class="search"   [(ngModel)]="userName" (ngModelChange)='search()'>
+                            </td>
+        
+                            <td>
+                                <a><i class="fa fa-search" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+        
+                    </table>
+        
+        
+                </div>
+        
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
+                 <br>
         </div> <br>
 
         <div class="row animated rotateInUpLeft">
@@ -53,7 +67,8 @@
                                 <td>{{app.dateAppointement}}</td>
                                 <td >{{app.state}}</td>
 
-                                <td><span *ngIf="app.purchased" class="custom-badge status-green">Purchased</span>
+                                <td>
+                                    <span *ngIf="app.purchased" class="custom-badge status-green">Purchased</span>
                                 
                                     <span *ngIf="!app.purchased" class="custom-badge status-red">NotPurchased</span>
                                 </td>
@@ -68,7 +83,7 @@
                                     class="rounded-circle m-r-8" alt=""></a>
 
                                     <a class="dropdown-item"  data-toggle="modal" 
-                                    (click)="getIdUser(user.id)"
+                                    (click)="getIdApp(app.idAppointement)"
                                      data-target="#delete_employee">
                                      <img width="27" height="21" src="../../../../assets/icons8-delete-48.png" 
                                         class="rounded-circle m-r-8" alt=""> </a>
