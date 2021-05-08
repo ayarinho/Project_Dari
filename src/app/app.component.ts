@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component ,Input,OnInit} from '@angular/core';
+import { AdminDashboardService } from './services/admin-dashboard.service';
+import { LoadingService } from './services/loading.service';
 
 
 
@@ -11,5 +13,18 @@ import { Component ,Input,OnInit} from '@angular/core';
 
 export class AppComponent {
  
+  loading$ = this.loader.loading$;
+  verifey:boolean=false;
+   
+  constructor(private loader:LoadingService,private adminservice:AdminDashboardService){
+
+  }
+   
+  declenche(){
+   
+       this.adminservice.getAllUsers().subscribe();
+}
+
+  
   
 }

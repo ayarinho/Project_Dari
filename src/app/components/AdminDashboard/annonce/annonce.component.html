@@ -55,7 +55,7 @@
 
                         <tbody [hidden]="verifeySorting" *ngFor="let user of listAds ">
 
-                            <tr *ngFor="let ad of user.ads  | paginate: {itemsPerPage:3,currentPage:p}" class="animated fadeInDown" >
+                            <tr *ngFor="let ad of user.ads  | paginate: {itemsPerPage:1,currentPage:p}" class="animated fadeInDown" >
                                 <td><img width="40" height="35" src="assets/uploads/{{user.picture}}" 
                                     class="rounded-circle m-r-8" alt=""> {{user.userName}}</td>
                                 <td>{{ad.area}}</td>
@@ -108,7 +108,7 @@
                         </thead>
 
                         <tbody [hidden]="!verifeySorting" 
-                        *ngFor="let ad of listSortingAdsDistance  | paginate: {itemsPerPage:6,currentPage:p} ">
+                        *ngFor="let ad of listSortingAdsDistance  | paginate: {itemsPerPage:2,currentPage:p} ">
 
                             <tr class="animated fadeInDown" >
                                

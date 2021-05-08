@@ -7,14 +7,12 @@ import { Component, OnInit ,Renderer2} from '@angular/core';
 })
 export class LoaderComponent implements OnInit {
 
-  constructor(private renderer: Renderer2) { }
+  constructor() { }
 
   
   ngOnInit(): void {
 
-    this.addJsToElement().onload = () => {
-      console.log('le script marche ');
-  
+
 }
 
   }
@@ -22,30 +20,5 @@ export class LoaderComponent implements OnInit {
 
   
 
-  addJsToElement(): HTMLScriptElement {
-
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.text= `
-    
-      const numb=document.querySelector('.numb');
-      let counter = 0;
-   
-      setInterval(()=>{
-        if(counter == 100){
-          clearInterval();
-        }else{
-          counter+=1;
-          numb.textContent = counter + "%";
-        }
-      }, 80);
-    
-    `;
 
 
-  this.renderer.appendChild(document.body, script);
-  
-  return script;
-}
-
-}
