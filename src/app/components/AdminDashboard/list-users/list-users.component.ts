@@ -61,7 +61,7 @@ export class ListUsersComponent implements OnInit {
 
       this.listNewUsers=data;
   
-      //console.log(this.listNewUsers)
+      console.log(this.listNewUsers)
     })
 
 }

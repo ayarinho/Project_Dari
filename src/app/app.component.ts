@@ -16,14 +16,11 @@ export class AppComponent {
   loading$ = this.loader.loading$;
   verifey:boolean=false;
    
-  constructor(private loader:LoadingService,private adminservice:AdminDashboardService){
+  constructor(private loader:LoadingService){
 
   }
    
-  declenche(){
-   
-       this.adminservice.getAllUsers().subscribe();
-}
+
 
   
   

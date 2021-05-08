@@ -41,6 +41,7 @@
                         <thead>
                             <tr>
                                 <th>Appointment ID</th>
+                                <th>Picture</th>
                                 <th>UserName</th>
                                 <th>Attendance</th>
                                 <th>Visibility</th>
@@ -51,12 +52,13 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody  *ngFor="let user of listAppointement; let i=index">
+                        <tbody  *ngFor="let user of listAppointement | paginate: {itemsPerPage:4,currentPage:p} ; let i=index">
                            
-                            <tr  *ngFor="let app of user.appointment  | paginate: {itemsPerPage:2,currentPage:p}  ">
+                            <tr  *ngFor="let app of user.appointment   ">
                                 <td>APT000{{app.idAppointement}}</td>
-                                <td><img width="32" height="30" src="assets/uploads/{{user.picture}}" 
-                                    class="rounded-circle m-r-8" alt=""> {{user.userName}}</td>
+                                <td><img width="40" height="33" src="assets/uploads/{{user.picture}}" 
+                                    class="rounded-circle m-r-8" alt=""> </td>
+                                <td>{{user.userName}}</td>
                                 <td>{{app.attendance}}</td>
                                 
                                 <td>

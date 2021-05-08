@@ -38,6 +38,7 @@
                     <table class="table table-striped custom-table" >
                         <thead [hidden]="verifeySorting" >
                             <tr >
+                                <th>Picture</th>
                                 <th>UserName</th>
                                 <th >Area</th>
                                 <th>Description</th>
@@ -57,7 +58,8 @@
 
                             <tr *ngFor="let ad of user.ads  | paginate: {itemsPerPage:1,currentPage:p}" class="animated fadeInDown" >
                                 <td><img width="40" height="35" src="assets/uploads/{{user.picture}}" 
-                                    class="rounded-circle m-r-8" alt=""> {{user.userName}}</td>
+                                    class="rounded-circle m-r-8" alt=""></td>
+                                <td> {{user.userName}}</td>
                                 <td>{{ad.area}}</td>
                                 <td>{{ad.description}}</td>
                                 <td>{{ad.endDate}}</td>
@@ -108,7 +110,7 @@
                         </thead>
 
                         <tbody [hidden]="!verifeySorting" 
-                        *ngFor="let ad of listSortingAdsDistance  | paginate: {itemsPerPage:2,currentPage:p} ">
+                        *ngFor="let ad of listSortingAdsDistance  | paginate: {itemsPerPage:5,currentPage:p} ">
 
                             <tr class="animated fadeInDown" >
                                
