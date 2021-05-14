@@ -14,6 +14,7 @@ export class AdminDashboardService {
     appointement:any;
     userApp:any;
     listnotif:Array<any>=[];
+    listEmail:Array<any>=[];
 
   constructor(private http:HttpClient) { }
 
@@ -201,5 +202,20 @@ export class AdminDashboardService {
    getAdByDistanceSorting(id:any){
 
     return this.http.get(this.url+"getAdsByDistanceSorting/"+id);
+   }
+
+
+   getAllEmailReceived(){
+
+    return this.http.get(this.url+"getAllEmailReceived")
+   }
+
+
+
+   setDataEmail(listEmail:any){
+
+
+     this.listEmail=listEmail;
+
    }
 }

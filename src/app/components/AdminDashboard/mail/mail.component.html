@@ -62,13 +62,15 @@
                                     </div>
                                 </div>
                                 <div class="float-left d-none d-sm-block">
-                                    <input type="text" placeholder="Search Messages" class="form-control search-message">
-                                </div>
+                                    <input class="text" placeholder="Search" class="search"   [(ngModel)]="email"
+                                     (ngModelChange)='search()' >                            
+                                       </div>
                             </div>
                             <div class="col-sm-2 col-md-4 col-4 top-action-right">
                                 <div class="text-right">
-                                    <span class="text-muted d-none d-md-inline-block">Showing 10 of 112 </span>
-                                    <button type="button" title="Refresh" data-toggle="tooltip" class="btn btn-white d-none d-md-inline-block"><i class="fa fa-refresh"></i></button>
+                                    <span class="text-muted d-none d-md-inline-block">Showing Last 50 </span>
+                                    <button type="button" title="Refresh" data-toggle="tooltip" 
+                                    class="btn btn-white d-none d-md-inline-block"><i class="fa fa-refresh"></i></button>
                                     <div class="btn-group">
                                         <a class="btn btn-white"><i class="fa fa-angle-left"></i></a>
                                         <a class="btn btn-white"><i class="fa fa-angle-right"></i></a>
@@ -87,29 +89,26 @@
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr class="unread clickable-row" data-href="mail-view.html">
+                                <tbody >
+
+                                    <tr class="unread clickable-row" data-href="mail-view.html"
+                                     *ngFor="let mail of listEmail ; let index=i">
                                         <td>
                                             <input type="checkbox" class="checkmail">
                                         </td>
-                                        <td><span class="mail-important"><i class="fa fa-star starred"></i></span></td>
-                                        <td class="name">John Doe</td>
-                                        <td class="subject">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</td>
+                                        <td><span class="mail-important"><i class="fa fa-star "></i></span></td>
+                                        
+                                        <td class="name">{{mail.From.personal}}</td>
+                                        <td class="name">{{mail.From.address}}</td>
+                                        <td class="name" >{{mail.Subject}}</td>
+                                       
+
                                         <td><i class="fa fa-paperclip"></i></td>
-                                        <td class="mail-date">13:14</td>
+                                        <td class="mail-date">{{mail.dateSend | date:'dd-MM-yyyy HH:mm'}}</td>
                                     </tr>
-                                    <tr class="unread clickable-row" data-href="mail-view.html">
-                                        <td>
-                                            <input type="checkbox" class="checkmail">
-                                        </td>
-                                        <td><span class="mail-important"><i class="fa fa-star-o"></i></span></td>
-                                        <td class="name">Envato Account</td>
-                                        <td class="subject">Important account security update from Envato</td>
-                                        <td></td>
-                                        <td class="mail-date">8:42</td>
-                                    </tr>
-                                
+
                                 </tbody>
+                                
                             </table>
                         </div>
                     </div>

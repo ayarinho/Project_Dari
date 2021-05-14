@@ -23,7 +23,7 @@ export class AppointementComponent implements OnInit  {
 
     this.idAppointement=idApp;
 
-    console.log("iddddddddddddddddddddddddddddddddddddd ",this.idAppointement)
+    //console.log("iddddddddddddddddddddddddddddddddddddd ",this.idAppointement)
        
   }
   

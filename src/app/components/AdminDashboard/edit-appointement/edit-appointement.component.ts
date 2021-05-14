@@ -50,9 +50,6 @@ constructor(private adminService:AdminDashboardService,private formBuilder: Form
 
    }
 
-  /*let date= this.datepipe.transform(this.appointement.dateAppointement,"dd/MM/yyyy HH:mm");
-  console.log(date)
-  this.dateAppointementConvert=date;*/
   
   function cleanString(str:any) {
     str = str.replace('"[', '[');
@@ -89,48 +86,31 @@ ngOnInit(): void {
 
 onSubmit(){
 
-  console.log(this.registerForm)
+  //console.log(this.registerForm)
   
 let date= this.datepipe.transform(this.registerForm.value.dateAppointement,"yyyy-MM-dd HH:mm:ss.S");
 
 this.registerForm.value.dateAppointement=date;
 
-console.log(this.registerForm.value)
+//console.log(this.registerForm.value)
 
-console.log("saleeeeeeeeeem" +this.registerForm.value.purchased)
-console.log(this.appointement.idAppointement)
+///console.log("saleeeeeeeeeem" +this.registerForm.value.purchased)
+//console.log(this.appointement.idAppointement)
 
 this.adminService.updateAppointement(this.registerForm.value,this.appointement.idAppointement)
 .subscribe((data:any)=>{
 
-  console.log("yaml 3aaaaaaay  "+data.id);
+  //console.log("yaml 3aaaaaaay  "+data.id);
 
   
 
-  if(data=="Appointement updated with success"){
+  if(data == "Appointement updated with success"){
 
     this.messageSuccesAppointement=data;
-
-    /*if(this.registerForm.value.visibility == true){
-     
-      this.adminService.isVisibility(data.id).subscribe();
- }else{
-
-      this.adminService.isNotVisibility(data.id).subscribe();
- }
-       
-      
-    if(this.registerForm.value.purchased == true){
-     
-      this.adminService.isPurchased(data.id).subscribe();
- }else{
-
-      this.adminService.isNotPurchased(data.id).subscribe();
- }*/
      
   }else{
 
-    console.log("dataaaa "+data);
+    //console.log("dataaaa "+data);
   this.messageFaildAppointement=data;
   }   
 })

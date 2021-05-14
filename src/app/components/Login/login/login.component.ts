@@ -5,8 +5,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { AdminDashboardService } from 'src/app/services/admin-dashboard.service';
-import{cleanString}  from '../../AdminDashboard/profile/profile.component'
-import jwtDecode from 'jwt-decode';
+
 
 export function passValidator(control: AbstractControl) {
   if (control && (control.value !== null || control.value !== undefined)) {
@@ -56,6 +55,10 @@ export class LoginComponent implements OnInit {
   userConnected:string="";
   listNotif:Array<any>=[];
   listNotif1:Array<any>=[];
+  listFromEmail:Array<any>=[]
+   listSubjectEmail:Array<any>=[]
+   listDateEmail:Array<any>=[]
+   listEmail:Array<any>=[]
 
   constructor(private renderer: Renderer2,   private formBuilder: FormBuilder,
     public auth: AngularFireAuth ,private os :AuthService,private route:Router
@@ -95,6 +98,55 @@ this.registerForm = this.formBuilder.group({
   lieu:['', [Validators.required]],
 
 });
+
+
+     /********************************recuperation email mel boite de reception doub metji login yekhdem********* */
+
+     this.adminService.getAllEmailReceived().subscribe(data=>{
+      
+      //console.log("aaaaaaaaaaaaaaaaaaa ",data)
+
+      Object.keys(data).map((Obj:any)=>{ 
+
+           this.listSubjectEmail.push(Obj);
+      })
+
+      Object.values(data).map((Ob:Array<any>)=>{ 
+
+        //console.log("aaaaaaaaaaaaaaaaa ",Ob);
+
+        
+        this.listDateEmail.push(Ob[1]);
+        this.listFromEmail.push(Ob[0]);
+   })
+
+   
+   /*this.listDateEmail.map(e=>{
+
+    console.log("date ",e)
+   })
+
+   this.listFromEmail.map(e=>{
+
+    console.log("Fromm",e)
+   })*/
+ 
+     for(let i=0;i<this.listFromEmail.length;i++){
+         
+            this.listEmail.push({"From":this.listFromEmail[i],"Subject":this.listSubjectEmail[i],"dateSend":this.listDateEmail[i]})
+        
+     }
+
+     this.adminService.setDataEmail(this.listEmail);
+      
+    })
+
+
+/***************************************************** */
+
+
+
+
   }
 
 
@@ -155,6 +207,8 @@ onSubmit(){
         Obj != "Username exits deja dans la base de donner" &&
         Obj != "Email exits deja dans la base de donner" &&
         Obj != "Invalid email"){
+
+       
    
           this.verifey=true;
            this.messageRegisterSuccess=Obj;
@@ -181,6 +235,8 @@ onSubmit(){
       if(this.idUser != null || this.idUser != undefined){
 
           this.os.setPhotoByClient(this.idUser,this.currentFileUpload.name).subscribe();
+
+
         }
         
      
@@ -317,6 +373,10 @@ onSubmit(){
         console.log(data);
 
         this.adminService.isConnected(data.id).subscribe();//mettre true dans la base pour specifie user connected
+
+
+
+       
 
          /*if(data.role == "Admin"){  // pour specifie dashborad admin yemchilha ken ena admin et client yemchi interface oussema
 

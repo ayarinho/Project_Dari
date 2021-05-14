@@ -41,12 +41,14 @@ export class GeolocalisationComponent implements OnInit ,OnDestroy,DoCheck{
         `lat: ${position.coords.latitude}, lon: ${position.coords.longitude}`
       );
       let mymap = L.map('map').setView(latLong, 13);
+    
+    
 
       L.tileLayer(
         'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic3VicmF0MDA3IiwiYSI6ImNrYjNyMjJxYjBibnIyem55d2NhcTdzM2IifQ.-NnMzrAAlykYciP4RP9zYQ',
         {
           attribution:
-            'Map data &copy; <a href="https://www.openstreetmap.org/"></a>  <a href="https://creativecommons.org/licenses/by-sa/2.0/"></a>,  <a href="https://www.mapbox.com/"></a>',
+            'Map data &copy; <a href="https://www.openstreetmap.org/">GoogleMap</a>  <a href="https://creativecommons.org/licenses/by-sa/2.0/"></a>,  <a href="https://www.mapbox.com/"></a>',
           maxZoom: 18,
           id: 'mapbox/streets-v11',
           tileSize: 512,

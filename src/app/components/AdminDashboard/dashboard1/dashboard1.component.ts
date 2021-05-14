@@ -34,7 +34,6 @@ export class Dashboard1Component implements OnInit  {
    verifeyTokenGoogle:boolean=false;
    listAppointement:Array<any>=[];
    listNewAppoitementFilter:Array<any>=[];
-   listA :Array<any>=[];
 
   constructor(private adminService:AdminDashboardService,private router:Router) { }
 
